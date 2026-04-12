@@ -13,8 +13,10 @@ int main() {
 	    cin >> b ;
 	    cin >> c ;
 	    
+			
 	    if (max(a, b) < c && c <= (a+b)) {
-        int res = (((n-1)*a)+((m-1)*b)+(c));
+				int s = min(n, m);
+        int res = (((n-s)*a)+((m-s)*b)+ (s*c));
 	        cout << res << endl;
 	    } else {
 	        cout << (n*a)+(m*b) << endl;
