@@ -16,7 +16,7 @@ int main()
 
   vector<int> p = {4, 5, 6};
   long long sum = 0;
-  sort(p.begin(), p.end());
+  // sort(p.begin(), p.end());
 
   do{
     long long cnt = 1;
