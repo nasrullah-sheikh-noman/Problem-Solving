@@ -14,7 +14,25 @@ int main()
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  // write your code here
+  ll t;
+  cin >> t;
+  while(t--) {
+    ll n;
+    cin >> n;
+    vl arr(n);
+    for (auto &x: arr) cin >> x;
+
+    for(ll i = n-2; i >= 0; i--) {
+      if( arr[i]+arr[i+1] > 0) {
+        arr[i] = max(arr[i], arr[i]+arr[i+1]);
+      }
+    }
+    ll cnt = 0;
+    for (auto x: arr) {
+      if(x > 0) cnt++;
+    }
+    cout << cnt << endl;
+  }
 
   return 0;
 }
