@@ -16,10 +16,7 @@ int main () {
         break;
       }
     } else {
-      if(str[i] >= '0' && str[i] <= '9') {
-        //
-      }
-      else {
+      if(!isdigit(str[i])){
         isTrue = false;
         break;
       }
