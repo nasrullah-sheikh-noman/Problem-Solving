@@ -1,23 +1,24 @@
 #include <stdio.h>
 
-void fnc(int n) {
-  int arr[n];
-  for(int i = 0; i < n; i++) {
-    scanf("%d", &arr[i]);
+int fnc(int arr[], int n, int i, int max) {
+  if(i == n) {
+    return max;
   }
-  int max = arr[0];
-  for(int i = 0; i < n; i++) {
-    if(arr[i] >= max) {
-      max = arr[i];
-    }
+  if(arr[i] >= max) {
+    max = arr[i];
   }
-  printf("%d", max);
+  return fnc(arr, n, i+1, max);
 }
 
 int main () {
   int n;
   scanf("%d", &n);
-  fnc(n);
-
+  int arr[n];
+  for(int i = 0; i < n; i++) {
+    scanf("%d", &arr[i]);
+  }
+  int max = arr[0];
+  int res = fnc(arr, n, 0, max);
+  printf("%d", res);
   return 0;
 }
