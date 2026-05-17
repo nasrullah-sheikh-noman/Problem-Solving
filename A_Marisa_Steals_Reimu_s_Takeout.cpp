@@ -35,6 +35,5 @@ int main()
     ans+=c1/3+c2/3;
     cout << ans << endl;
   }
-
   return 0;
 }
