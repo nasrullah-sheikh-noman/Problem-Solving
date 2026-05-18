@@ -1,0 +1,8 @@
+bool hasDuplicate(const vector<int>& nums) {
+    unordered_set<int> s;
+    for(auto x : nums) {
+        if(s.count(x)) return true;
+        s.insert(x);
+    }
+    return false;
+}
