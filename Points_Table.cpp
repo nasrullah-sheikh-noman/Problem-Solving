@@ -1,0 +1,35 @@
+// starting with the name of almighty ALLAH
+#include <bits/stdc++.h>
+#define ll long long
+#define pb push_back
+#define vc vector
+#define vi vc<int>
+#define vl vc<ll>
+#define endl "\n" 
+#define yes cout << "YES" << endl; 
+#define no cout << "NO" << endl; 
+using namespace std;
+
+int main()
+{
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+
+  int x , y, a, b;
+  cin >> x >> y >> a >> b;
+  if(x > a) {
+    cout << "Alice" << endl;
+  } else if(x == a) {
+      if(y > b) {
+        cout << "Alice" << endl;
+      } else if (b > y) {
+        cout << "Bob" << endl;
+      } else {
+        cout << "Alice" << endl;
+      }
+  } else {
+    cout << "Bob" << endl;
+  }
+
+  return 0;
+}
