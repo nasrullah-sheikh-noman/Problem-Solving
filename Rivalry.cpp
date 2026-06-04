@@ -16,9 +16,9 @@ int main()
   cin.tie(nullptr);
 
   int a, b, c, d; cin >> a >> b >> c >> d;
-  int D = c-a;
-  int e = d-b;
-  if(D> e) cout << "Dominator\n";
+  int D = c+a;
+  int e = d+b;
+  if(D> e) cout << "Dominater\n";
   else cout << "Everule\n";
 
   return 0;
