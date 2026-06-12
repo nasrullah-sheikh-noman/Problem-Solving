@@ -10,26 +10,33 @@
 #define no cout << "NO" << endl; 
 using namespace std;
 
+class Student {
+  public :
+   string name;
+   int cls;
+   char section;
+   int id;
+   int mm;
+   int em;
+};
+
+bool cmp(Student l, Student r) {
+  return l.em+l.mm == r.em+r.mm ? l.id < r.id : l.em+l.mm > r.em+r.mm;
+}
+
 int main()
 {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
   int n; cin >> n;
-  int arr[n];
+  Student arr[n];
   for(int i = 0; i < n; i++) {
-    cin >> arr[i];
+    cin >> arr[i].name >> arr[i].cls >> arr[i].section >> arr[i].id >> arr[i].em >> arr[i].mm ;
   }
-  sort(arr, arr+n);
+  sort(arr, arr+n, cmp);
   for(int i = 0; i < n; i++) {
-    cout << arr[i] << " ";
+    cout << arr[i].name << " " << arr[i].cls << " " << arr[i].section << " " << arr[i].id << " " << arr[i].em << " " << arr[i].mm << endl;
   }
-  cout << endl;
-  sort(arr, arr+n, greater<int>());
-  for(int i = 0; i < n; i++) {
-    cout << arr[i] << " ";
-  }
-  cout << endl;
-
   return 0;
 }
