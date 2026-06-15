@@ -15,17 +15,15 @@ int main()
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int n; cin >> n;
-  if(n == 2 || n == 3) {
-    cout << "NO SOLUTION\n";
-    return 0;
+  int t; cin >> t;
+  while(t--) {
+    int a, b, c, d, e, f; cin >> a >> b >> c >> d >> e >> f;
+    int fs = a+b+c;
+    int ls = d+e+f;
+    if(fs>ls) {
+      cout << "1\n";
+    } else cout << "2\n";
   }
-  for(int i = 2; i <= n; i+=2) {
-    cout << i << " " ;
-  }
-  for(int i = 1; i <= n; i+=2) {
-    cout << i << " " ;
-  }
-  
+
   return 0;
 }
