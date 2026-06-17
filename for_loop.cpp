@@ -15,7 +15,7 @@ int main()
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int x = 0, y = 2;
+  int x = 1, y = 3;
   int cnt = 0;
   for(int i = x; i <= y; i++) {
     for(int j = i; j <= y; j++) {
