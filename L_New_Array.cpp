@@ -18,23 +18,21 @@ int main()
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int t; cin >> t; 
-  while(t--) {
-    int n; cin >> n;
-    int freq[n+1] = {};
-    for(int i = 0; i < n; i++) {
-      int x; cin >> x;
-      freq[x]++;
-    }
-    int an = -1;
-    for(int i = 1; i <= n; i++) {
-      if(freq[i] >= 3) {
-        an = i;
-        break;
-      }
-    }
-    cout << an << endl;
+  int n; cin >> n;
+  vi a(n), b(n);
+  for(int i = 0; i < n; i++) {
+    cin >> a[i];
   }
+  for(int i = 0; i < n; i++) {
+    cin >> b[i];
+  }
+  vi c;
+  c = b;
+  c.insert(c.end(), a.begin(), a.end());
+  for(auto x: c) {
+    cout << x << " ";
+  }
+  
 
   return 0;
 }
