@@ -1,35 +1,35 @@
+// starting with the name of almighty ALLAH
 #include <bits/stdc++.h>
+#define ll long long
+#define i8 __int128_t
+#define ui8 __uint128_t
+#define pb(x) push_back(x)
+#define all(x) x.begin(), x.end()
+#define sz(x) (int)x.size()
+#define szl(x) (ll)x.size()
+#define vc vector
+#define vi vc<int>
+#define vl vc<ll>
+#define ul unsigned ll
+#define vu vc<ul>
+#define endl "\n" 
+#define yes cout << "YES" << endl; 
+#define no cout << "NO" << endl; 
 using namespace std;
 
-int main () {
+int main()
+{
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
 
-  int n = 5, m = 5;
-  int arr[n][m];
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-        cin >> arr[i][j] ;
+  int n, m; cin >> n >> m;
+  int ans = 0;
+  for(int i = 0; i < n; i++) {
+    for(int j = 0; j < m; j++) {
+      cout << ans+1 << " ";
+      ans = ans+1;
     }
-  }
-
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-      if (arr[i][j] == 1) {
-        int s1 = 0;
-        if (i < 3) {
-          s1 = (3 - (i+1));
-        } else {
-          s1 = ((i+1) - 3);
-        }
-        int s2 = 0;
-        if (j < 3) {
-          s2 = (3 - (j+1));
-        } else {
-          s2 = ((j+1) - 3);
-        }
-        int s = s1 + s2;
-        cout <<  s << endl;
-      }
-    }
+    cout << endl;
   }
 
   return 0;

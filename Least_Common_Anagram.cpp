@@ -35,7 +35,7 @@ int main()
     }
   }
   string ans;
-  for(int i = 0; i < 25; i++) {
+  for(int i = 0; i < 26; i++) {
     ans.append(mn[i], char('a'+i));
   }
   if(ans.empty()) {
