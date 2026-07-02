@@ -41,56 +41,14 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-class Node {
-  public: 
-    int val;
-    Node* next;
-  Node(int val) {
-    this->val = val;
-    this->next = NULL;
-  }
-};
-
-void insert_new_node(Node* &head, Node* &tail, int val) {
-  Node* newNode = new Node(val);
-  if(head == NULL) {
-    head = newNode;
-    tail = newNode;
-    return;
-  }
-  tail->next = newNode;
-  tail = newNode;
-
-}
-
-void descending_sort(Node* head) {
-  for(Node* i = head; i != NULL; i = i->next) {
-    Node* mx = i;
-    for(Node* j = i->next; j != NULL; j = j->next) {
-      if(j->val > mx->val) mx = j;
-    }
-    swap(mx->val, i->val);
-  }
-}
-
-void print_singly_linked_list(Node* head) {
-  Node* tmp = head;
-  while(tmp != NULL) {
-    cout << tmp->val << endl;
-    tmp = tmp->next;
-  }
-}
-
 void solve() {
-  Node* head = NULL;
-  Node* tail = NULL;
-  while(1) {
-    int x; cin >> x;
-    if(x == -1) break;
-    insert_new_node(head, tail, x);
+  int n, m; cin >> n >> m;
+  int res = 0;
+  while(n > m) {
+    res+=n;
+    n--;
   }
-  descending_sort(head);
-  print_singly_linked_list(head);
+  cout << res << endl;
 }
 
 int main()
@@ -99,7 +57,7 @@ int main()
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
   while(t--) {
   // cout << "Case : " << t << " ";
     solve();
