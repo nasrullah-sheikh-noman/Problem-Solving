@@ -63,9 +63,9 @@ void solve() {
       suff[i] = max(suff[i+1], v[i]);
     }
   }
-  for(int p = 0; p <= n-3; ++p) {
-    if(pre1[p] >= pre2[p] + pre3[p]) {
-      if(suff[p+1]>=v[p]) {
+  for(int i = 0; i <= n-3; ++i) {
+    if(pre1[i] >= pre2[i] + pre3[i]) {
+      if(suff[i+1]>=v[i]) {
         Yes
         return;
       }

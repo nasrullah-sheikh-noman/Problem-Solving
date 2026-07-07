@@ -45,17 +45,12 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int k, n; cin >> k >> n;
-  priority_queue<int, vi, greater<int>> pq;
-  for(int i = 0; i < n; i++) {
-    int x; cin >> x;
-    pq.push(x);
-    if(sz(pq)>k) {
-      pq.pop();
-    } 
-    if(sz(pq)< k) {
-      cout << "-1" << " ";
-    } else cout << pq.top() << " ";
+  int n, k; cin >> n >> k;
+  for(int i = n-k; i <= n; i++) {
+    cout << i << " ";
+  }
+  for(int i = n-k-1; i > 0; i--) {
+    cout << i << " ";
   }
   cout << nl;
 }
@@ -66,7 +61,7 @@ int main()
   cin.tie(nullptr);
 
   int t = 1;
-   cin >> t;
+  cin >> t;
   while(t--) {
   // cout << "Case : " << t << " ";
     solve();
