@@ -94,7 +94,33 @@ void solve() {
   int n; cin >> n;
   vi v(n);
   cinv(v);
-  
+  vc<vc<bool>> pal(n, vc<bool>(n, false));
+  for (int i = 0; i < n; i++) {
+    pal[i][i] = true;
+  }
+  for (int l = 2; l <= n; l++) {
+    for (int i = 0; i + l - 1 < n; i++) {
+      int j = i + l - 1;
+      if(l==2) {
+        pal[i][j] = (v[i] == v[j]);
+      } else {
+        pal[i][j] = (v[i] == v[j] && pal[i + 1][j - 1]);
+      }
+    }
+  }
+  vi dp(n, INT_MAX);
+  for (int i = 0; i < n; i++) {
+    if(pal[0][i]) {
+      dp[i] = 1;
+      continue;
+    }
+    for (int j = 0; j < i; j++) {
+      if(pal[j+1][i]) {
+        dp[i] = min(dp[i], dp[j]+1);
+      }
+    }
+  }
+  cout << dp[n - 1] << nl;
 }
 
 int32_t main() {
