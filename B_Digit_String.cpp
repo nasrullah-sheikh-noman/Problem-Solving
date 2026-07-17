@@ -91,22 +91,32 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  ll n, c;
-  cin >> n >> c;
-  vl v(n);
-  cinv(v);
-  sort(v.rbegin(), v.rend());
-  vl pref(n + 1, 0);
-  for (int i = 0; i < n; i++) {
-    pref[i + 1] = pref[i] + v[i];
+  string s;
+  cin >> s;
+  int c4 = 0;
+  int t2 = 0;
+  for(char c: s) {
+    if(c=='2')
+      t2++;
+    else if(c=='4')
+      c4++;
   }
-  ll mx = -1e18;
-  int op = (n + 1) / 2;
-  for (int i = op; i <= n; i++) {
-    ll cur = pref[i] - i * c;
-    mx = max(mx, cur);
+  int n = s.length();
+  int minr = n;
+  int l13 = 0;
+  int l2 = 0;
+  for (int i = 0; i <= n; i++) {
+    int r2 = t2 - l2;
+    minr = min(minr, l13+r2);
+    if(i<n) {
+      if(s[i] == '1' || s[i] == '3') {
+        l13++;
+      } else if(s[i] == '2') {
+        l2++;
+      }
+    }
   }
-  cout << mx << nl;
+  cout << minr + c4 << nl;
 }
 
 int32_t main() {
