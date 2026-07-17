@@ -91,35 +91,68 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  list<int> myList, myList2;
-  while(true) {
-    int x;
-    cin >> x;
-    if(x==-1) break;
-    myList.pb(x);
+  // list<int> myList, myList2;
+  
+  // while(true) {
+  //   int x;
+  //   cin >> x;
+  //   if(x==-1) break;
+  //   myList.pb(x);
+  // }
+  // while(true) {
+  //   int x;
+  //   cin >> x;
+  //   if(x==-1) break;
+  //   myList2.pb(x);
+  // }
+  // // int n = myList.size();
+  // if(myList2.size()!=myList.size()) {
+  //   // No;
+  //   return;
+  // }
+  // auto it1 = myList2.begin();
+  // auto it2 = myList.begin();
+  // while(it1 != myList2.end()) {
+  //   if(*it1 != *it2) {
+  //     // No;
+  //     return;
+  //   }
+  //   it1++;
+  //   it2++;
+  // }
+  // Yes;
+
+  list<int> temp = {1, 2, 3, 34, 12};
+  list<int> temp2 = {122, 234, 543};
+  temp.insert(next(temp.begin(), 3), temp2.begin(), temp2.end());
+  for(auto it: temp) {
+    cout << it << " ";
   }
-  while(true) {
-    int x;
-    cin >> x;
-    if(x==-1) break;
-    myList2.pb(x);
-  }
-  // int n = myList.size();
-  if(myList2.size()!=myList.size()) {
-    No;
-    return;
-  }
-  auto it1 = myList2.begin();
-  auto it2 = myList.begin();
-  while(it1 != myList2.end()) {
-    if(*it1 != *it2) {
-      No;
-      return;
-    }
-    it1++;
-    it2++;
-  }
-  Yes;
+  cout << *next(temp.begin(), 3);
+  // temp.clear();
+  // temp.pb(12);
+  // temp.push_front(32);
+  // temp.pop_back();
+  // temp.pop_front();
+  // temp2.assign(temp.begin(), temp.end());
+  // for(auto it: temp2) {
+  //   cout << it << " ";
+  // }
+  // temp.resize(5);
+  // cout << temp.size() << nl;
+  // if(temp.empty()) {
+  //   cout << "empty" << nl;
+  // } else
+  //   cout << "not empty\n";
+  // cout << temp.empty() << nl;
+  // tmp2 = temp;
+  // cout << temp.size() << nl;
+  // for (auto it: tmp2)
+  // {
+  //   cout << it << " " ;
+  // }
+
+
 }
 
 int32_t main() {
