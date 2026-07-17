@@ -122,9 +122,21 @@ void solve() {
   // }
   // Yes;
 
-  list<int> temp = {1, 2, 3, 34, 12};
+  list<int> temp = {1, 9, 2, 2, 2, 3, 34, 12, 12, 12, 9, 2, 87, 64};
   list<int> temp2 = {122, 234, 543};
-  temp.insert(next(temp.begin(), 3), temp2.begin(), temp2.end());
+  // temp.insert(next(temp.begin(), 3), temp2.begin(), temp2.end());
+  // temp.erase(next(temp.begin(), 2), next(temp.begin(), 5));
+  // replace(temp.begin(), temp.end(), 2, 20);
+  // auto it = find(temp.begin(), temp.end(), 22);
+  // if(it == temp.end()) {
+  //   cout << "not found\n";
+  // } else
+  //   cout << "found\n";
+  // temp.remove(9);
+  // temp.sort();
+  // temp.sort(greater<int>());
+  // temp.unique();
+  temp.reverse();
   for(auto it: temp) {
     cout << it << " ";
   }
