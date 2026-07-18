@@ -94,7 +94,7 @@ class Node {
   public: 
     int val;
     Node* next;
-    Node* prev;
+    Node *prev;
     Node(int val)
     {
       this->val = val;
@@ -115,34 +115,33 @@ void insert_at_tail(Node* &head, Node* &tail, int val) {
   tail = newNode;
 }
 
-void reverse_doubly_linked_list(Node* head, Node* tail) {
-  for (Node *i = head, *j = tail; i != j && i->prev != j; i=i->next, j=j->prev) {
-    swap(i->val, j->val);
+void reverse_linked_list(Node* head, Node* tail) {
+  for (Node *l = head, *r = tail; l != r && l->prev != r; l=l->next, r=r->prev) {
+    swap(l->val, r->val);
   }
 }
 
-void print_doubly_linked_list(Node* head) {
+void print_linked_list(Node *head) {
   Node *tmp = head;
-  while(tmp!=NULL) {
-    cout << tmp->val << " \n";
+  while(tmp != NULL) {
+    cout << tmp->val << " ";
     tmp = tmp->next;
   }
 }
 
 void solve() {
-  Node* head = NULL;
-  Node* tail = NULL;
+  Node *head = NULL;
+  Node *tail = NULL;
   while(1) {
     int x;
     cin >> x;
-    if(x==-1)
+    if(x==-1) {
       break;
+    }
     insert_at_tail(head, tail, x);
   }
-  reverse_doubly_linked_list(head, tail);
-  print_doubly_linked_list(head);
-  // cout << " head : " << head->val << nl;
-  // cout << " tail : " << tail->val << nl;
+  reverse_linked_list(head, tail);
+  print_linked_list(head);
 }
 
 int32_t main() {

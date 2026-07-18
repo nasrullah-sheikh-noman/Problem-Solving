@@ -94,55 +94,37 @@ class Node {
   public: 
     int val;
     Node* next;
-    Node* prev;
-    Node(int val)
-    {
-      this->val = val;
-      this->next = NULL;
-      this->prev = NULL;
-    }
+  Node(int val) {
+    this->val = val;
+    this->next = NULL;
+  }
 };
 
-void insert_at_tail(Node* &head, Node* &tail, int val) {
-  Node *newNode = new Node(val);
-  if(head==NULL) {
-    head = newNode;
-    tail = newNode;
-    return;
-  }
-  tail->next = newNode;
-  newNode->prev = tail;
-  tail = newNode;
-}
-
-void reverse_doubly_linked_list(Node* head, Node* tail) {
-  for (Node *i = head, *j = tail; i != j && i->prev != j; i=i->next, j=j->prev) {
-    swap(i->val, j->val);
-  }
-}
-
-void print_doubly_linked_list(Node* head) {
-  Node *tmp = head;
-  while(tmp!=NULL) {
-    cout << tmp->val << " \n";
-    tmp = tmp->next;
-  }
-}
-
 void solve() {
-  Node* head = NULL;
-  Node* tail = NULL;
-  while(1) {
-    int x;
-    cin >> x;
-    if(x==-1)
-      break;
-    insert_at_tail(head, tail, x);
+  Node *head = new Node(20);
+  Node *a = new Node(30);
+  Node *b = new Node(40);
+  Node *c = new Node(50);
+  Node *d = new Node(60);
+
+  head->next = a;
+  a->next = b;
+  b->next = c;
+  c->next = d;
+  d->next = NULL;
+
+  Node *slow = head;
+  Node *fast = head;
+
+  while(fast!=NULL && fast->next != NULL) {
+    slow = slow->next;
+    fast = fast->next->next;
+    if(slow == fast) {
+      cout << "Cycle detected\n";
+      return;
+    }
   }
-  reverse_doubly_linked_list(head, tail);
-  print_doubly_linked_list(head);
-  // cout << " head : " << head->val << nl;
-  // cout << " tail : " << tail->val << nl;
+  cout << "Cycle not dected\n";
 }
 
 int32_t main() {
