@@ -91,27 +91,21 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, m;
-  cin >> n >> m;
-  vi v(n), v2(n - 1);
-  cinv(v);
-  cinv(v2);
-  int mx = INT_MAX;
-  for (int i = 0; i < 2; i++) {
-    vi p(n);
-    p[0] = i;
-    for(int j = 1; j < n; j++) {
-      p[j] = p[j - 1] ^ v2[j - 1];
-    }
-    int cost = 0;
-    for (int j = 0; j < n; j++) {
-      if((v[j]%2) != p[j]) {
-        cost++;
-      }
-    }
-    mx = min(mx, cost);
+  int n, k, m;
+  cin >> n >> k >> m;
+  if(k>m) {
+    No;
+    return;
   }
-  cout << mx << nl;
+  Yes;
+  for (int i = 1; i <= n; i++) {
+    if(i%k==0) {
+      cout << m - k + 1 << (i == n ? "" : " ");
+    } else {
+      cout << 1 << (i == n ? "" : " ");
+    }
+  }
+  cout << nl;
 }
 
 int32_t main() {
@@ -119,7 +113,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
