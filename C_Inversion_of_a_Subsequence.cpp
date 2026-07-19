@@ -40,7 +40,7 @@ const ld PI = acosl(-1.0L);
 #define rsrt(v) sort(rall(v))
 #define rvs(v) reverse(all(v))
 #define sz(x) (int)((x).size())
-#define nl '\n'
+#define nl "\n"
 #define cinv(v) for(auto &x : (v)) cin >> x
 #define coutv(v) for(auto &x : (v)) cout << x << ' '; cout << nl
 #define coutvl(v) for(auto &x : (v)) cout << x << nl
@@ -91,23 +91,36 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, k, m;
-  cin >> n >> k >> m;
-  if(k>m) {
-    No;
+  int n;
+  cin >> n;
+
+  vector<int> a(n), b(n);
+  for (int &x : a) cin >> x;
+  for (int &x : b) cin >> x;
+
+  if (a == b) {
+    cout << 0 << nl;
     return;
   }
-  Yes;
-  // k lenght, divisible by m
-  // if k = 4, m = 6, n = 5;
-  for (int i = 1; i <= n; i++) {
-    if(i%k==0) {
-      cout << m - k + 1 << (i == n ? "" : " ");
-    } else {
-      cout << 1 << (i == n ? "" : " ");
+
+  int sum = 0;
+
+  for (int i = 0; i < n; ++i) {
+    if (a[i] != b[i]) {
+      sum += a[i];
     }
   }
-  cout << nl;
+        
+  if (accumulate(a.begin(), a.end(), 0) == 0 || accumulate(b.begin(), b.end(), 0) == n) {
+    cout << -1 << nl;
+    return;
+  }
+
+  if (sum % 2 == 1) {
+    cout << 1 << nl;
+  } else {
+    cout << 2 << nl;
+  }
 }
 
 int32_t main() {
