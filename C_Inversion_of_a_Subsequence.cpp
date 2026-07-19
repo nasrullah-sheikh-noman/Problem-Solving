@@ -95,8 +95,8 @@ void solve() {
   cin >> n;
 
   vector<int> a(n), b(n);
-  for (int &x : a) cin >> x;
-  for (int &x : b) cin >> x;
+  cinv(a);
+  cinv(b);
 
   if (a == b) {
     cout << 0 << nl;
