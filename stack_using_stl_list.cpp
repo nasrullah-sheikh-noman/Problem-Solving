@@ -92,43 +92,28 @@ int my_rand(int l, int r) {
 
 class myStack {
   public:
-    vector<int> v;
-    void push(int val) {
-      v.push_back(val);
+    list<int> l;
+    void push(int x) {
+      l.push_back(x);
     }
     void pop() {
-      v.pop_back();
+      l.pop_back();
     }
     int top() {
-      return v.back();
+      return l.back();
     }
     int size() {
-      return v.size();
+      return l.size();
     }
     bool empty() {
-      return v.empty();
+      return l.empty();
     }
 };
 
 void solve() {
-  myStack st;
-  
-  // st.push(10);
-  // st.push(20);
-  // st.push(30);
-
-  // cout << st.top() << nl;
-  // st.pop();
-  // cout << st.top() << nl;
-  // st.pop();
-  // cout << st.top() << nl;
-  // cout << "size : " << st.size() << nl;
-  // if(!st.empty()) {
-  //   cout << st.top() << nl;
-  // }
-
   int n;
   cin >> n;
+  myStack st;
   for (int i = 0; i < n; i++) {
     int x;
     cin >> x;

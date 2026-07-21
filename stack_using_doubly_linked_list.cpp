@@ -90,50 +90,67 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
+class Node {
+  public: 
+    int val;
+    Node* next;
+    Node *prev;
+    Node(int val)
+    {
+      this->val = val;
+      this->next = NULL;
+      this->prev = NULL;
+    }
+};
+
 class myStack {
   public:
-    vector<int> v;
-    void push(int val) {
-      v.push_back(val);
+    Node *head = NULL;
+    Node *tail = NULL;
+    int cnt = 0;
+
+    void push(int x) {
+      cnt++;
+      Node *newNode = new Node(x);
+      if(head==NULL) {
+        head = newNode;
+        tail = newNode;
+        return;
+      }
+      tail->next = newNode;
+      newNode->prev = tail;
+      tail = newNode;
     }
     void pop() {
-      v.pop_back();
+      cnt--;
+      tail = tail->prev;
+      if(tail==NULL) {
+        head = NULL;
+        return;
+      }
+      tail->next = NULL;
     }
     int top() {
-      return v.back();
+      return tail->val;
     }
     int size() {
-      return v.size();
+      return cnt;
     }
     bool empty() {
-      return v.empty();
+      return head == NULL;
     }
 };
 
 void solve() {
-  myStack st;
-  
-  // st.push(10);
-  // st.push(20);
-  // st.push(30);
-
-  // cout << st.top() << nl;
-  // st.pop();
-  // cout << st.top() << nl;
-  // st.pop();
-  // cout << st.top() << nl;
-  // cout << "size : " << st.size() << nl;
-  // if(!st.empty()) {
-  //   cout << st.top() << nl;
-  // }
-
   int n;
   cin >> n;
+  myStack st;
   for (int i = 0; i < n; i++) {
     int x;
     cin >> x;
     st.push(x);
   }
+  
   while(!st.empty()) {
     cout << st.top() << nl;
     st.pop();
