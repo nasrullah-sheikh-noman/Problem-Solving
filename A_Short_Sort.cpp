@@ -49,7 +49,6 @@ void solve() {
   if(s == "bca" || s == "cab") No
   else Yes
 }
-
 int main()
 {
   ios::sync_with_stdio(false);
