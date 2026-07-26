@@ -102,12 +102,12 @@ class Node {
   }
 };
 
-void preOrder(Node* root) {
+void postOrder(Node* root) {
   if(root==NULL)
     return;
+  postOrder(root->left);
+  postOrder(root->right);
   cout << root->val << " ";
-  preOrder(root->left);
-  preOrder(root->right);
 }
 
 void solve() {
@@ -124,7 +124,7 @@ void solve() {
   b->left = d;
   b->right = e;
 
-  preOrder(root);
+  postOrder(root);
 }
 
 int32_t main() {
