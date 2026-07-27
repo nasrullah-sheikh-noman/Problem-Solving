@@ -90,52 +90,22 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-struct card {
-  int l, r, u, v;
-};
-
-bool dp[5005][5005];
-
 void solve() {
-    int n;
-    cin >> n;
-    vc<card> v(n);
-    for (int i = 0; i < n; i++) {
-      cin >> v[i].l >> v[i].r >> v[i].u >> v[i].v;
-    }
-
-    for (int j = 0; j <= n; j++) {
-        for (int m = 0; m <= n; m++) {
-            dp[j][m] = false;
-        }
-    }
-
-    for (int m = 1; m <= n; m++) {
-        dp[0][m] = true;
-    }
-
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j >= 1; j--) {
-            if (j >= v[i].l && j <= v[i].r)
-                continue;
-
-            for (int m = j; m <= n; m++) {
-                if (dp[j - 1][m]) {
-                    int rr = m - j + 1;
-                    if (rr < v[i].u || rr > v[i].v) {
-                        dp[j][m] = true;
-                    }
-                }
-            }
-        }
-    }
-
-    for (int m = n; m >= 0; m--) {
-        if (m == 0 || dp[m][m]) {
-            cout << m << nl;
-            return;
-        }
-    }
+  int n = 7;
+  vi v(n);
+  int sunny = 0;
+  int rainy = 0;
+  for (int i = 0; i < n; i++) {
+    cin >> v[i];
+    if(v[i]==0)
+      rainy++;
+    else
+      sunny++;
+  }
+  if(sunny>rainy)
+    Yes;
+  else
+    No;
 }
 
 int32_t main() {

@@ -91,34 +91,23 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, k;
-  cin >> n >> k;
-  if(k==n-1) {
-    cout << -1 << nl;
-    return;
+  int n;
+  cin >> n;
+  vi v(n);
+  for(int i = 0; i < n; i++) {
+    string s;
+    cin >> s;
+    int cnt = 0;
+    for(auto c: s) {
+      cnt++;
+      if(c=='#') break;
+    }
+    v[i] = cnt;
   }
-  string s = "";
-  int z = k / 2 + 1;
-  int o = (k + 1) / 2 + 1;
-  for (int i = 0; i < z; i++)
-    s += '0';
-  for (int i = 0; i < o; i++) s+='1';
-  char next = '0';
-  while(sz(s) < n) {
-    s += next;
-    next = (next == '0' ? '1' : '0');
+  for (int i = n - 1; i >= 0; i--) {
+    cout << v[i] << " \n"[i==0];
   }
-  int c0 = 0, c1 = 0;
-  for(char c: s) {
-    if(c=='0')
-      c0++;
-    else
-      c1++;
-  }
-  if(abs(c0-c1) <= 1) {
-    cout << s << nl;
-  } else
-    cout << -1 << nl;
+  
 }
 
 int32_t main() {
