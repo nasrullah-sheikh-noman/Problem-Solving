@@ -103,7 +103,8 @@ class Node {
 };
 
 Node* input_tree() {
-  int val; cin >> val;
+  int val;
+  cin >> val;
   Node *root;
   if(val==-1)
     root = NULL;
@@ -115,6 +116,7 @@ Node* input_tree() {
   while(!q.empty()) {
     Node *p = q.front();
     q.pop();
+
     int l, r;
     cin >> l >> r;
     if(l==-1)
@@ -133,21 +135,21 @@ Node* input_tree() {
   return root;
 }
 
-int sum = 0;
-int sum_without_leaf_nodes(Node* root) {
-  if(root==NULL)
-    return 0;
-  if(root->left!=NULL || root->right!=NULL)
-    sum += root->val;
-  int l = sum_without_leaf_nodes(root->left);
-  int r = sum_without_leaf_nodes(root->right);
-  return l + r;
+vi v;
+void leaf_nodes(Node* root) {
+  if(root==NULL) return;
+  if(root->left==NULL&&root->right==NULL)
+    v.pb(root->val);
+  leaf_nodes(root->left);
+  leaf_nodes(root->right);
+
 }
 
 void solve() {
-  Node* root = input_tree();
-  int ans = sum_without_leaf_nodes(root);
-  cout << sum << nl;
+  Node *root = input_tree();
+  leaf_nodes(root);
+  sort(v.begin(), v.end(), greater<int>());
+  coutv(v);
 }
 
 int32_t main() {
