@@ -107,7 +107,7 @@ void solve() {
         dp[i] = max(dp[i], (dp[p - 1] + (l * l)));
       } else
       f[v[i]] = i;
-  }
+    }
   cout << dp[N] << nl;
 }
 
