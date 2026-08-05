@@ -93,11 +93,24 @@ int my_rand(int l, int r) {
 void solve() {
   int n;
   cin >> n;
-  vi v(n), v2(n);
-  for (int i = 0; i < n; i++) {
-    cin >> v[i] >> v2[i];
+  vpl bases(n);
+  for(int i = 0; i < n; i++) {
+    cin >> bases[i].first >> bases[i].second;
   }
-  
+  ll mx = 0;
+  for (int t = 0; t < 24; t++) {
+    ll cur = 0;
+    for (int i = 0; i < n; i++) {
+      ll w = bases[i].first;
+      int x = bases[i].second;
+      int local_start = (t + x) % 24;
+      if(local_start>=9 && local_start < 18) {
+        cur += w;
+      }
+    }
+    mx = max(mx, cur);
+  }
+  cout << mx << nl;
 }
 
 int32_t main() {
