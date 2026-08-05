@@ -91,24 +91,28 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int a, b;
-  cin >> a >> b;
-  ll xk, yk, xq, yq;
-  cin >> xk >> yk >> xq >> yq;
-  vpl moves = {
-      {a, b}, {a, -b}, {-a, b}, {-a, -b}, {b, a}, {b, -a}, {-b, a}, {-b, -a}};
-  set<pair<ll, ll>> king_attack;
-  set<pair<ll, ll>> queen_attck;
-  for(auto& [dx, dy]: moves) {
-    king_attack.insert({xk + dx, yk + dy});
-    queen_attck.insert({xq+dx, yq+dy});
+  int n;
+  cin >> n;
+  vi v(n);
+  cinv(v);
+  vi dp(n + 1, 0);
+  vi best(n + 2, -1e9);
+  for (int i = 0; i <n; i++) {
+    dp[i + 1] = dp[i];
+    int x = v[i];
+    if(x==1) {
+      best[1] = max(best[1], dp[i]+1);
+      dp[i + 1] = max(dp[i + 1], best[1]);
+
+    } else if(x <= n) {
+      if(best[x-1] >= -1e9) {
+        best[x] = max(best[x],  best[x-1]+1);
+        dp[i + 1] = max(dp[i + 1], best[x]);
+
+      }
+    }
   }
-  int ans = 0;
-  for(auto& pos: king_attack) {
-    if(queen_attck.count(pos))
-      ans++;
-  } 
-  cout << ans << nl;
+  cout << dp[n] << nl;
 }
 
 int32_t main() {

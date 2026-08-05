@@ -91,24 +91,21 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int a, b;
-  cin >> a >> b;
-  ll xk, yk, xq, yq;
-  cin >> xk >> yk >> xq >> yq;
-  vpl moves = {
-      {a, b}, {a, -b}, {-a, b}, {-a, -b}, {b, a}, {b, -a}, {-b, a}, {-b, -a}};
-  set<pair<ll, ll>> king_attack;
-  set<pair<ll, ll>> queen_attck;
-  for(auto& [dx, dy]: moves) {
-    king_attack.insert({xk + dx, yk + dy});
-    queen_attck.insert({xq+dx, yq+dy});
+  int n;
+  cin >> n;
+  vl v(n+1);
+  for (int i = 1; i <= n; i++)
+    cin >> v[i];
+  ll mx = 0;
+  ll sum = 0;
+  for (int i = 2; i <= n; i++) {
+    ll cur = 1 + sum+v[i]-i;
+    mx = max(mx, cur);
+    if(v[i]>0)
+      sum += v[i];
+
   }
-  int ans = 0;
-  for(auto& pos: king_attack) {
-    if(queen_attck.count(pos))
-      ans++;
-  } 
-  cout << ans << nl;
+  cout << mx << nl;
 }
 
 int32_t main() {
