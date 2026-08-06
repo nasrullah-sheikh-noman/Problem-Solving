@@ -102,59 +102,21 @@ class Node {
   }
 };
 
-Node* input_tree() {
-  int val;
-  cin >> val;
-  Node *root;
-  if(val==-1)
-    root = NULL;
-  else
-    root = new Node(val);
-  queue<Node *> q;
-  if(root) q.push(root);
-  while(!q.empty()) {
-    Node *p = q.front();
-    q.pop();
-    int l, r;
-    cin >> l >> r;
-    if(l==-1)
-      p->left = NULL;
-    else
-      p->left = new Node(l);
-    if(r==-1)
-      p->right = NULL;
-    else
-      p->right = new Node(r);
-    if(p->left)
-      q.push(p->left);
-    if(p->right)
-      q.push(p->right);
-  }
-
+Node* array_convert_to_BST(vi v, int l, int r) {
+  if(l>r)
+    return NULL;
+  int mid = (l+r)/2;
+  Node *root = new Node(v[mid]);
+  Node* leftroot = array_convert_to_BST(v, l, mid - 1);
+  Node* rightroot = array_convert_to_BST(v, mid + 1, r);
+  root->left = leftroot;
+  root->right = rightroot;
   return root;
-}
-
-void insert_in_BST(Node* &root, int val) {
-  if(root==NULL) {
-    root = new Node(val);
-  }
-  if(root->val>val) {
-    if(root->left==NULL)
-      root->left = new Node(val);
-    else
-      insert_in_BST(root->left, val);
-  }
-  else {
-    if(root->right==NULL)
-      root->right = new Node(val);
-    else
-      insert_in_BST(root->right, val);
-  }
 }
 
 void level_order(Node* root) {
   if(root==NULL) {
-    cout << "Not tree found\n";
+    cout << "no tree\n";
     return;
   }
   queue<Node *> q;
@@ -167,16 +129,15 @@ void level_order(Node* root) {
       q.push(p->left);
     if(p->right)
       q.push(p->right);
-
   }
 }
 
 void solve() {
-  Node *root = input_tree();
-  int val;
-  cin >> val;
-  insert_in_BST(root, val);
-  insert_in_BST(root, 11);
+  int n;
+  cin >> n;
+  vi v(n);
+  cinv(v);
+  Node* root = array_convert_to_BST(v, 0, n - 1);
   level_order(root);
 }
 
