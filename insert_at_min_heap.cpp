@@ -90,8 +90,9 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-void insert_at_min_heap(vector<int> &v) {
-  int cur_idx = sz(v)-1;
+void insert_at_min_heap(vector<int> &v, int val) {
+  v.push_back(val);
+  int cur_idx = v.size()-1;
   while(cur_idx!=0) {
     int par_idx = (cur_idx-1)/2;
     if(v[par_idx] > v[cur_idx]) {
@@ -105,13 +106,15 @@ void insert_at_min_heap(vector<int> &v) {
 void solve() {
   int n;
   cin >> n;
-  vi v(n);
-  cinv(v);
+  vi v;
+  for (int i = 0; i < n; i++) {
+    int val;
+    cin >> val;
+    insert_at_min_heap(v, val);
+  }
   int val;
   cin >> val;
-  v.pb(val);
-
-  insert_at_min_heap(v);
+  insert_at_min_heap(v, val);
 
   coutv(v);
 }

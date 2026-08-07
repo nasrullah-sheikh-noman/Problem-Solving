@@ -90,33 +90,67 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-void insert_at_max_heap(vector<int> &v, int val) {
-  v.push_back(val);
-  int cur_idx = v.size()-1;
+void insert_at_max_heap(vi &v, int val) {
+  v.pb(val);
+  int cur_idx = sz(v) - 1;
   while(cur_idx!=0) {
     int par_idx = (cur_idx-1)/2;
     if(v[par_idx] < v[cur_idx]) {
       swap(v[par_idx], v[cur_idx]);
       cur_idx = par_idx;
-    } else
-      break;
+    } else break;
+  }
+} 
+
+void print_max_heap(vi v) {
+  for(int x: v)
+    cout << x << " ";
+  cout << nl;
+}
+
+void delete_max_heap(vi &v) {
+  if(v.empty())
+    return;
+  v[0] = v.back();
+  v.pop_back();
+  int cur_idx = 0;
+  while(1) {
+    int left_idx = cur_idx * 2 + 1;
+    int right_idx = cur_idx * 2 + 2;
+    int left_val = INT_MIN, right_val = INT_MIN;
+    if(left_idx < v.size())
+      left_val = v[left_idx];
+    if(right_idx < v.size())
+      right_val = v[right_idx];
+    if(left_val >= right_val && left_val > v[cur_idx]) {
+      swap(v[cur_idx], v[left_idx]);
+      cur_idx = left_idx;
+    } else if(right_val > left_val && right_val > v[cur_idx]) {
+      swap(v[cur_idx], v[right_idx]);
+      cur_idx = right_idx;
+    } else break;
   }
 }
 
 void solve() {
-  int n;
-  cin >> n;
+  int n; cin >> n;
   vi v;
   for(int i = 0; i < n; i++) {
     int val;
     cin >> val;
     insert_at_max_heap(v, val);
   }
-  int val;
-  cin >> val;
-  insert_at_max_heap(v, val);
-
-  coutv(v);
+  print_max_heap(v);
+  delete_max_heap(v);
+  print_max_heap(v);
+  delete_max_heap(v);
+  print_max_heap(v);
+  delete_max_heap(v);
+  print_max_heap(v);
+  delete_max_heap(v);
+  print_max_heap(v);
+  delete_max_heap(v);
+  print_max_heap(v);
 }
 
 int32_t main() {
