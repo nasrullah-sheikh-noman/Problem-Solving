@@ -93,7 +93,8 @@ int my_rand(int l, int r) {
 void solve() {
   int n;
   cin >> n;
-  cout << 1 << " " << 1 << " " << n - 2 << nl;
+  int res = (n+1) / 2;
+  cout << res << " " << n << nl;
 }
 
 int32_t main() {
