@@ -104,7 +104,6 @@ void solve() {
     v.eb(s[i]- 'a', j - i);
     st.pb(i);
     i = j;
-
   }
   int len = sz(v), best = 0;
   for (int i = 0; i < len; i++) {

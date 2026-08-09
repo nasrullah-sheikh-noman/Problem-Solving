@@ -101,7 +101,6 @@ void solve() {
       (i % 2 ? oa : ea)++;
     if(b[i] == '1')
       (i % 2 ? ob : eb)++;
-    
   }
   if(ea == eb && oa == ob)
     Yes;

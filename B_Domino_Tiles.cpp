@@ -90,27 +90,40 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
+ll countway(const string& s, int par) {
+  int ff = -1;
+  int fv = -1;
+  for(int i = par; i < sz(s); i+=2) {
+    if(s[i]!='?') {
+      ff = i;
+      fv = s[i] - '0';
+      break;
+    }
+  }
+  if(ff==-1)
+    return 2;
+  for (int i = par; i < sz(s); i+=2) {
+    if(s[i]=='?') continue;
+    int ex;
+    if((i-ff)/2%2==0) {
+      ex = fv;
+    } else
+      ex = fv ^ 1;
+    if(s[i]-'0'!=ex) {
+      return 0;
+    }
+  }
+  return 1;
+}
+
 void solve() {
   int n;
   cin >> n;
-  vi v(n);
-  cinv(v);
-  vi dp(n + 1, 0);
-  vi best(n + 2, -1e9);
-  for (int i = 0; i <n; i++) {
-    dp[i + 1] = dp[i];
-    int x = v[i];
-    if(x==1) {
-      best[1] = max(best[1], dp[i]+1);
-      dp[i + 1] = max(dp[i + 1], best[1]);
-    } else if(x <= n) {
-      if(best[x-1] >= -1e9) {
-        best[x] = max(best[x],  best[x-1]+1);
-        dp[i + 1] = max(dp[i + 1], best[x]);
-      }
-    }
-  }
-  cout << dp[n] << nl;
+  string s;
+  cin >> s;
+  ll oddway = countway(s, 0);
+  ll evenway = countway(s, 1);
+  cout << oddway * evenway % MOD << nl;
 }
 
 int32_t main() {

@@ -113,7 +113,6 @@ void solve() {
   for (int i = 0; i < sz(oa); i++)
     ans += abs(oa[i] - ob[i]) /2;
   cout << ans << nl;
-  
 }
 
 int32_t main() {

@@ -98,12 +98,11 @@ void solve() {
     cin >> v[i];
   ll mx = 0;
   ll sum = 0;
-  for (int i = 2; i <= n; i++) {
-    ll cur = 1 + sum+v[i]-i;
+  for (int j = 2; j <= n; j++) {
+    ll cur = 1 + sum+v[j]-j;
     mx = max(mx, cur);
-    if(v[i]>0)
-      sum += v[i];
-
+    if(v[j]>0)
+      sum += v[j];
   }
   cout << mx << nl;
 }

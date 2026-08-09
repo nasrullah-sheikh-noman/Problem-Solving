@@ -91,26 +91,13 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n;
-  cin >> n;
-  vi v(n);
-  cinv(v);
-  vi dp(n + 1, 0);
-  vi best(n + 2, -1e9);
-  for (int i = 0; i <n; i++) {
-    dp[i + 1] = dp[i];
-    int x = v[i];
-    if(x==1) {
-      best[1] = max(best[1], dp[i]+1);
-      dp[i + 1] = max(dp[i + 1], best[1]);
-    } else if(x <= n) {
-      if(best[x-1] >= -1e9) {
-        best[x] = max(best[x],  best[x-1]+1);
-        dp[i + 1] = max(dp[i + 1], best[x]);
-      }
-    }
-  }
-  cout << dp[n] << nl;
+  int a, b, c; cin >> a >> b >> c;
+  vl v = {a, b, c};
+  sort(v.begin(), v.end());
+  a = v[0];
+  b = v[1];
+  c = v[2];
+  cout << min(b, c - a) << nl;
 }
 
 int32_t main() {
