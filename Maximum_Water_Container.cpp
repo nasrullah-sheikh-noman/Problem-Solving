@@ -91,27 +91,20 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, k;
-  cin >> n >> k;
-  string s;
-  cin >> s;
-  int cnt = 0;
-  for (int i = 0; i < k; i++)
-  {
-    if(s[i]!='B')
-    cnt++;
+  int n;
+  cin >> n;
+  vi v(n);
+  cinv(v);
+  ll mx = 0;
+  int l = 0, r = n - 1;
+  while(l<r) {
+    ll sum = 1LL * (r-l) * min(v[r], v[l]);
+    mx = max(mx, sum);
+    if(v[r]>=v[l]) l++;
+    else
+      r--;
   }
-
-  int mn = cnt;
-  for (int i = k; i < n; i++) {
-    if(s[i-k]!='B')
-      cnt--;
-    if(s[i]!='B')
-      cnt++;
-
-    mn = min(mn, cnt);
-  }
-  cout << mn << nl;
+  cout << mx << nl;
 }
 
 int32_t main() {
