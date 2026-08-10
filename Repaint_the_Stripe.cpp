@@ -108,7 +108,6 @@ void solve() {
       cnt--;
     if(s[i]!='B')
       cnt++;
-
     mn = min(mn, cnt);
   }
   cout << mn << nl;
