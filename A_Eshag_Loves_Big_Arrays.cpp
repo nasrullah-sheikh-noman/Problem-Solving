@@ -98,10 +98,10 @@ void solve() {
   int mn = *min_element(all(v));
   int cnt = 0;
   for(auto x: v) {
-    if(x==mn)
+    if(x!=mn)
       cnt++;
   }
-  cout << n-cnt << nl;
+  cout << cnt << nl;
 }
 
 int32_t main() {
