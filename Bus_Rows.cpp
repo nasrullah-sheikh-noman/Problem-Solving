@@ -92,7 +92,7 @@ int my_rand(int l, int r) {
 
 void solve() {
   int n, m, x; cin >> n >> m >> x;
-  int r = (x - 1) / m + 1;
+  int r = (x +m-1) / m ;
   int f = r;
   int b = n-r+1;
   cout << min(f, b) << nl;
