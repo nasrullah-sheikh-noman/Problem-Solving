@@ -123,9 +123,7 @@ void solve() {
         gain = 1; break;
       }
     }
-
   }
-
   cout << len + gain << nl;
 }
 
