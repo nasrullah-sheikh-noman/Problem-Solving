@@ -93,38 +93,31 @@ int my_rand(int l, int r) {
 void solve() {
   int n, a, b;
   cin >> n >> a >> b;
-  int h = n / 2;
-  vi v(n+1);
-  v[1] = a;
-  v[n] = b;
+  vi v(n);
+  v[0] = a, v[n - 1] = b;
   int val = n;
-  for (int i = 2; i < n; i++) {
-    if(val==a || val==b)
+  for (int i = 1; i < n - 1; ) {
+    if(val==a || val==b) {
       val--;
+      continue;
+    }
     v[i] = val;
     val--;
+    i++;
   }
-  int mn = n;
-  for (int i = 1; i <= h; i++) {
+  int h = n / 2;
+  int mx = 0, mn = n;
+  for (int i = 0; i < h; i++) {
     mn = min(mn, v[i]);
   }
-  if(mn!=a) {
-    cout << -1 << nl;
-    return;
-  }
-  int mx = 0;
-  for (int i = h+1; i <= n; i++) {
+  for (int i = n - 1; i >= h; i--) {
     mx = max(mx, v[i]);
   }
-  if(mx!=b) {
+  if(mx!=b || mn!=a) {
     cout << -1 << nl;
     return;
   }
-    for (int i = 1; i <= n; i++)
-    {
-      cout << v[i] << " ";
-    }
-    cout << nl;
+  coutv(v);
 }
 
 int32_t main() {
