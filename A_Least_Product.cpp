@@ -93,9 +93,9 @@ int my_rand(int l, int r) {
 void solve() {
   int n;
   cin >> n;
-  vi v(n);
+  vi v(n+1);
   int z = 0, min = 0;
-  for (int i = 0; i < n; i++) {
+  for (int i = 1; i <= n; i++) {
     cin >> v[i];
     if(v[i]==0)
       z++;
@@ -110,17 +110,7 @@ void solve() {
     return;
   } else
     cout << 1 << nl;
-  if(min==0) {
-    cout << 0 << " " << 0 << nl;
-  } else {
-    for (int i = 0; i < n; i++)
-    {
-      if(v[i]<0) {
-        cout << i << " " << 0 << nl;
-        return;
-      }
-    }
-  }
+    cout << 1 << " " << 0 << nl;
 }
 
 int32_t main() {
