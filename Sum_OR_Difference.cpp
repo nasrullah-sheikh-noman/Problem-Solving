@@ -91,43 +91,11 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n;
-  cin >> n;
-  set<ll> st;
-  for (int i = 0; i < n; i++) {
-    int x;
-    cin >> x;
-    st.insert(x);
-  }
-  ll cur = 0, ans = 0;
-  while(!st.empty()) {
-    auto it = st.lower_bound(cur);
-    if(it==st.end()) {
-      it--;
-      ans += cur - *it;
-      cur = *it;
-      st.erase(it);
-    }
-    else if(it==st.begin()) {
-      ans += *it - cur;
-      cur = *it;
-      st.erase(*it);
-    }
-    else {
-      ll r = *it;
-      ll l = *prev(it);
-      if(cur-l <= r-cur) {
-        ans += cur - l;
-        cur = l;
-        st.erase(l);
-      }else {
-        ans += r - cur;
-        cur = r;
-        st.erase(r);
-      }
-    }
-  }
-  cout << ans << nl;
+  int a, b; cin >> a >> b;
+  if(a>b)
+    cout << a - b << nl;
+  else
+    cout << a + b << nl;
 }
 
 int32_t main() {

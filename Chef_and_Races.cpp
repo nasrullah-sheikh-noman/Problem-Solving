@@ -95,9 +95,9 @@ void solve() {
   cin >> x >> y >> a >> b;
   int ans = 0;
   if(a!=x && a != y)
-    ans = max(ans, a);
+    ans++;
   if(b!=x && b != y)
-    ans = max(ans, b);
+    ans++;
   cout << ans << nl;
 }
 
