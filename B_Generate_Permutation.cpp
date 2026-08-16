@@ -93,7 +93,16 @@ int my_rand(int l, int r) {
 void solve() {
   int n;
   cin >> n;
-  
+  if(n%2==0) {
+    cout << -1 << nl;
+    return;
+  } else {
+    for (int i = n; i >= 1; i -= 2)
+      cout << i << " ";
+    for (int i = 2; i < n; i+=2)
+      cout << i << " ";
+    cout << nl;
+  }
 }
 
 int32_t main() {
