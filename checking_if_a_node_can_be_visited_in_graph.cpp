@@ -90,69 +90,42 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-class Node {
-  public: 
-    int val;
-    Node *left;
-    Node *right;
-  Node(int val) {
-    this->val = val;
-    this->left = NULL;
-    this->right = NULL;
-  }
-};
+vector<int> adj_list[10001];
+bool visited[10001];
 
-Node* intput_tree() {
-  int val;
-  cin >> val;
-  Node *root;
-  if(val==-1)
-    root = NULL;
-  else
-    root = new Node(val);
-  queue<Node *> q;
-  if(root)
-    q.push(root);
+void BFS(int src) {
+  queue<int> q;
+  q.push(src);
+  visited[src] = true;
   while(!q.empty()) {
-    Node* p = q.front();
+    int par = q.front();
     q.pop();
-
-    int l, r;
-    cin >> l >> r;
-    if(l==-1)
-      p->left = NULL;
-    else {
-      p->left = new Node(l);
-      q.push(p->left);
-    }
-    if(r==-1)
-      p->right = NULL;
-    else {
-      p->right = new Node(r);
-      q.push(p->right);
+    for(auto x: adj_list[par]) {
+      if(!visited[x]) {
+        q.push(x);
+        visited[x] = true;
+      }
     }
   }
-  return root;
-}
-
-void level_order_traversal(Node* root) {
-  if(root==NULL)
-    return;
-  queue<Node*> q;
-  q.push(root);
-  while(!q.empty()) {
-    Node* p = q.front();
-    q.pop();
-    cout << p->val << " ";
-    if(p->left) q.push(p->left);
-    if(p->right) q.push(p->right);
-  }
-  cout << nl;
 }
 
 void solve() {
-  Node* root= intput_tree();
-  level_order_traversal(root);
+  int n, e;
+  cin >> n >> e;
+  while(e--) {
+    int a, b;
+    cin >> a >> b;
+    adj_list[a].push_back(b);
+    adj_list[b].push_back(a);
+  }
+  memset(visited, false, sizeof(visited));
+  int src, dst;
+  cin >> src >> dst;
+  BFS(src);
+  if(visited[dst])
+    Yes;
+  else
+    No;
 }
 
 int32_t main() {
@@ -160,7 +133,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();

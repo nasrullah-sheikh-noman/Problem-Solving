@@ -92,14 +92,15 @@ int my_rand(int l, int r) {
 
 void solve() {
   int n, e; cin >> n >> e;
-  vpi v;
+  vector<pair<int, int>> v;
   while(e--) {
     int a, b;
     cin >> a >> b;
-    v.eb(a, b);
+    v.emplace_back(a, b);
   }
-  for(auto x: v)
-    cout << x.F << " " << x.S << nl;
+  for(auto x: v) {
+    cout << x.first << " " << x.second << endl;
+  }
 }
 
 int32_t main() {

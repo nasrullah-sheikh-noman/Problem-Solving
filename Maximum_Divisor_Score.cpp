@@ -97,7 +97,7 @@ void solve() {
   cinv(v);
   vi div_cnt(100001, 0);
   for (int i = 1; i <=100001; i++) {
-    for (int j = 0; j <= 100001; j+=i) {
+    for (int j = i; j <= 100001; j+=i) {
       div_cnt[j]++;
     }
   }

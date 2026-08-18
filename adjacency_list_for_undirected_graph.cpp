@@ -93,15 +93,18 @@ int my_rand(int l, int r) {
 void solve() {
   int n, e;
   cin >> n >> e;
-  vi arr[n];
-  for(int i = 0; i<e; i++) {
+  vector<int> v[n];
+  for(int i = 0; i < e; i++) {
     int a, b;
     cin >> a >> b;
-    arr[a].pb(b);
-    arr[b].pb(a);
+    v[a].push_back(b);
+    v[b].push_back(a);
   }
   for (int i = 0; i < n; i++) {
-    coutv(arr[i]);
+    for(auto &x : v[i]) {
+      cout << x << ' ';
+    }
+    cout << endl;
   }
 }
 
