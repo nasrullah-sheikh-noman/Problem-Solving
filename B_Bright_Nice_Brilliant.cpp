@@ -9,7 +9,8 @@ using namespace std;
 using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
-
+using i8 = __int128_t;
+using ui8 = __uint128_t;
 
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
@@ -89,56 +90,15 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-vector<int> adj_list[100001];
-bool vis[100001];
-int level[100001];
-int par[100001];
-
-void bfs(int src) {
-  queue<int> q;
-  q.push(src);
-  vis[src] = true;
-  level[src] = 1;
-  while(!q.empty()) {
-    int p = q.front();
-    q.pop();
-    for(auto x: adj_list[p]){
-      if(!vis[x]) {
-        q.push(x);
-        vis[x] = true;
-        level[x] = level[p] + 1;
-        par[x] = p;
-      }
-    }
-  }
-}
-
 void solve() {
-  int n, m;
-  cin >> n >> m;
-  while(m--) {
-    int a, b;
-    cin >> a >> b;
-    adj_list[a].push_back(b);
-    adj_list[b].push_back(a);
-  }
-  memset(vis, false, sizeof(vis));
-  memset(level, 0, sizeof(level));
-  memset(par, -1, sizeof(par));
-  bfs(1);
-  vi path;
-  int node = n;
-  while(node!=-1) {
-    path.push_back(node);
-    node = par[node];
-  }
-  reverse(path.begin(), path.end());
-  if(!vis[n])
-    cout << "IMPOSSIBLE\n";
-  else {
-    cout << level[n] << nl;
-    for(auto x: path)
-      cout << x << " ";
+  int n;
+  cin >> n;
+  cout << 1 << nl;
+  for(int i = 2; i <=n; i++) {
+    cout << 1 << " ";
+    for(int j = 0; j < i-2; j++)
+      cout << 0 << " ";
+    cout << 1 << nl;
   }
 }
 
@@ -147,7 +107,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
