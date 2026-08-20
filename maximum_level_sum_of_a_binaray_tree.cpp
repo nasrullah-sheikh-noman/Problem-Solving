@@ -20,11 +20,11 @@ public:
         int levelSum = 0;
         int n = q.size();
         for(int i = 0; i <n; i++) {
-          TreeNode* tmp = q.front();
+          TreeNode* par = q.front();
           q.pop();
-          levelSum+=tmp->val;
-          if(tmp->left) q.push(tmp->left);
-          if(tmp->right) q.push(tmp->right);
+          levelSum+=par->val;
+          if(par->left) q.push(par->left);
+          if(par->right) q.push(par->right);
         }
         if(levelSum>mxsum) {
           mxsum = levelSum;

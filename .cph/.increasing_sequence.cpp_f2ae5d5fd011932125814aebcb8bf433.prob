@@ -1,0 +1,1 @@
+{"name":"Local: increasing_sequence","url":"d:\\Competitive Programming\\problem solving\\increasing_sequence.cpp","tests":[{"id":1787248075006,"input":"3\n5\n1 3 2 6 7\n4\n2 3 4 5\n1\n1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Competitive Programming\\problem solving\\increasing_sequence.cpp","group":"local","local":true}
