@@ -1,0 +1,1 @@
+{"name":"Local: BFS_in_2D_grid","url":"d:\\Competitive Programming\\problem solving\\BFS_in_2D_grid.cpp","tests":[{"id":1787223465874,"input":"3 4\n....\n....\n....\n1 2\n2 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Competitive Programming\\problem solving\\BFS_in_2D_grid.cpp","group":"local","local":true}
