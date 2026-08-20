@@ -93,12 +93,12 @@ int my_rand(int l, int r) {
 vector<int> adj_list[10001];
 bool vis[10001];
 
-void BFS(int src) {
+void DFS(int src) {
   cout << src << " ";
   vis[src] = true;
   for(auto child: adj_list[src]) {
     if(!vis[child]) {
-      BFS(child);
+      DFS(child);
     }
   }
 }
@@ -115,7 +115,7 @@ void solve() {
   memset(vis, false, sizeof(vis));
   int src;
   cin >> src;
-  BFS(src);
+  DFS(src);
 }
 
 int32_t main() {
