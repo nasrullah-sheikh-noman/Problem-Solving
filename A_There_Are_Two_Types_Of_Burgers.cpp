@@ -91,17 +91,22 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int x;
-  cin >> x;
-  int gun = 1;
+  int b, p, f;
+  cin >> b >> p >> f;
+  int h, c;
+  cin >> h >> c;
   int ans = 0;
-  while(x>0) {
-    int rem = x % 10;
-    rem = min(rem, 9 - rem);
-    ans += rem * gun;
-    gun *= 10;
-    x /= 10;
+  b /= 2;
+  if(h<c) {
+    swap(h, c);
+    swap(p, f);
   }
+  int cnt = min(b, p);
+  b -= cnt, p -= cnt;
+  ans += h * cnt;
+  cnt = min(b, f);
+  b -= cnt, f -= cnt;
+  ans += c * cnt;
   cout << ans << nl;
 }
 
@@ -110,7 +115,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
