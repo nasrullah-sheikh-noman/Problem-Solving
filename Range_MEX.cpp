@@ -93,22 +93,40 @@ int my_rand(int l, int r) {
 void solve() {
   int n, q;
   cin >> n >> q;
-  vi v(n);
-  cinv(v);
-  while(q--) {
-    int a, b;
-    cin >> a >> b;
-    bool vis[4] = {};
-    for (int i = a - 1; i < b; i++) {
-      vis[v[i]] = true;
-    }
-    for (int i = 0; i <= 3; i++) {
-      if(!vis[i]) {
-        cout << i << nl;
-        break;
-      }
-    }
+  vi v(n+1);
+  for (int i = 1; i <= n;i++)
+    cin >> v[i];
+  vi pre0(n + 1, 0);
+  vi pre1(n + 1, 0);
+  vi pre2(n + 1, 0);
+  for (int i = 1; i <= n; i++) {
+    pre0[i] = pre0[i - 1];
+    pre1[i] = pre1[i - 1];
+    pre2[i] = pre2[i - 1];
+    if(v[i]==0)
+      pre0[i]++;
+    else if(v[i]==1)
+      pre1[i]++;
+    else if(v[i]==2)
+      pre2[i]++;
   }
+
+  while (q--)
+    {
+      int a, b;
+      cin >> a >> b;
+      int cnt0 = pre0[b] - pre0[a - 1];
+      int cnt1 = pre1[b] - pre1[a - 1];
+      int cnt2 = pre2[b] - pre2[a - 1];
+      if(cnt0==0)
+        cout << 0 << nl;
+      else if(cnt1==0)
+        cout << 1 << nl;
+      else if(cnt2==0)
+        cout << 2 << nl;
+      else
+        cout << 3 << nl;
+    }
 }
 
 int32_t main() {
