@@ -91,19 +91,24 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n;
-  cin >> n;
+  int n, q;
+  cin >> n >> q;
   vi v(n);
   cinv(v);
-  int mn = *min_element(v.begin(), v.end()), cnt = 0;
-  for (auto x: v) {
-    if(mn==x)
-      cnt++;
+  while(q--) {
+    int a, b;
+    cin >> a >> b;
+    bool vis[4] = {};
+    for (int i = a - 1; i < b; i++) {
+      vis[v[i]] = true;
+    }
+    for (int i = 0; i <= 3; i++) {
+      if(!vis[i]) {
+        cout << i << nl;
+        break;
+      }
+    }
   }
-  if(cnt >= 2)
-    Yes;
-  else
-    No;
 }
 
 int32_t main() {
@@ -111,7 +116,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();

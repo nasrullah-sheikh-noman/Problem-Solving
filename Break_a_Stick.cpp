@@ -95,15 +95,19 @@ void solve() {
   cin >> n;
   vi v(n);
   cinv(v);
-  int mn = *min_element(v.begin(), v.end()), cnt = 0;
-  for (auto x: v) {
-    if(mn==x)
-      cnt++;
+  int ans = INT_MAX;
+  int sum = 0;
+  for (int i = 0; i < n; i++) {
+    sum += v[i];
   }
-  if(cnt >= 2)
-    Yes;
-  else
-    No;
+  int res = 0;
+  for (int i = 0; i < n; i++) {
+    res += v[i];
+    int big = sum - res;
+    int val = abs(res - big);
+    ans = min(ans, val);
+  }
+  cout << ans << nl;
 }
 
 int32_t main() {
@@ -111,7 +115,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();

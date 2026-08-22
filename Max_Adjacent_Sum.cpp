@@ -102,7 +102,6 @@ void solve() {
       mxodd = max(mxodd, x);
     else
       mxeven = max(mxeven, x);
-
   }
   cout << mxeven + mxodd << nl;
 }

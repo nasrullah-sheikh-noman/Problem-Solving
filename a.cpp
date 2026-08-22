@@ -42,7 +42,14 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  string s;
+  cin >> s;
+  for(auto x: s) {
+    if(x!='A') {
+      cout << '.';
+    } else
+      cout << 'A';
+  }
 }
 
 int main()

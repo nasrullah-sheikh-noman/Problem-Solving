@@ -91,19 +91,26 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n;
-  cin >> n;
-  vi v(n);
-  cinv(v);
-  int mn = *min_element(v.begin(), v.end()), cnt = 0;
-  for (auto x: v) {
-    if(mn==x)
-      cnt++;
+  ll n, m, k;
+  cin >> n >> m >> k;
+  vi v(n+1);
+  for (int i = 1; i <= n; i++)
+    cin >> v[i];
+  vc<bool> eaten(n + 1, false);
+  ll sum = 0;
+  for (ll i = 1; i <= n;i++) {
+    if(sum+v[i] <= k) {
+      yes;
+      eaten[i] = true;
+      sum += v[i];
+    } else
+      no;
+    if(i-m+1>=1) {
+      int odd = i - m + 1;
+      if(eaten[odd])
+        sum -= v[odd];
+    }
   }
-  if(cnt >= 2)
-    Yes;
-  else
-    No;
 }
 
 int32_t main() {
@@ -111,7 +118,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();
