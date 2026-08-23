@@ -93,7 +93,6 @@ int my_rand(int l, int r) {
 void solve() {
   int n, m;
   cin >> n >> m;
-  set<int> st;
   cout << 2*(m-n)+1 << nl;
 }
 
