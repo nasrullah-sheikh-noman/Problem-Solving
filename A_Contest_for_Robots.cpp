@@ -91,7 +91,23 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n;
+  cin >> n;
+  vi v(n);
+  vi v2(n);
+  cinv(v);
+  cinv(v2);
+  int cnt1 = 0, cnt2 = 0;
+  for (int i = 0; i < n; i++) {
+    if(v[i]==v2[i]) continue;
+    cnt1 += v[i];
+    cnt2 += v2[i];
+  }
+  cnt2++;
+  if(cnt1==0)
+    cout << -1 << nl;
+  else
+    cout << (cnt2 + cnt1 - 1) / cnt1 << nl;
 }
 
 int32_t main() {
