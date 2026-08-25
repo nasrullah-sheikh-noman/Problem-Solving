@@ -92,42 +92,34 @@ int my_rand(int l, int r) {
 
 vector<int> adj_list[101];
 bool vis[101];
-int par[101];
-bool cycle;
+bool pathvis[101];
+bool cycle = false;
 
-void bfs(int src) {
-  queue<int> q;
-  q.push(src);
+void dfs(int src) {
   vis[src] = true;
-  while(!q.empty()) {
-    int p = q.front();
-    q.pop();
-    for(auto x: adj_list[p]) {
-      if(vis[x] && par[p]!=x)
-        cycle = true;
-      if(!vis[x]) {
-        q.push(x);
-        vis[x] = true;
-        par[x] = p;
-      }
+  pathvis[src] = true;
+  for(auto x: adj_list[src]) {
+    if(vis[x] && pathvis[x])
+      cycle = true;
+    if(!vis[x]) {
+      dfs(x);
     }
   }
+  vis[src] = false;
 }
 
 void solve() {
-  int v, e;
-  cin >> v >> e;
-  while(e--) {
+  int e, v;
+  cin >> e >> v;
+  while(v--) {
     int a, b;
     cin >> a >> b;
     adj_list[a].push_back(b);
-    adj_list[b].push_back(a);
   }
-  memset(par, -1, sizeof(par));
-  cycle = false;
-  for (int i = 0; i < v; i++) {
-    if(!vis[i])
-      bfs(i);
+  for (int i = 0; i < e; i++) {
+    if(!vis[i]) {
+      dfs(i);
+    }
   }
   if(cycle)
     cout << "Cycle Detected\n";

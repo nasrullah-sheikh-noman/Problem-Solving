@@ -122,9 +122,9 @@ void solve() {
     }
   }
   if(cycle)
-    yes;
+    cout << "Cycle Detected\n";
   else
-    no;
+    cout << "No Cycle\n";
 }
 
 int32_t main() {
