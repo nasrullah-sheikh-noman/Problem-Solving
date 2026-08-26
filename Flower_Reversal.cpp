@@ -92,17 +92,25 @@ int my_rand(int l, int r) {
 
 void solve() {
   int n;
-  ll k;
-  cin >> n >> k;
-  int sum = 0, mx = 0, ans = 0;
-  for (int i = 1; i <= n; i++) {
-    int x;
-    cin >> x;
-    sum += x;
-    mx = max(mx, x);
-    if(sum-mx <= k)
-      ans = i;
+  cin >> n;
+  string s;
+  cin >> s;
+  int ans = 0;
+  int cnt01 = 0, cnt10 = 0;
+  for (int i = 0; i < n - 1; i++) {
+    if(s[i]==s[i+1])
+      ans++;
+    else {
+      if(s[i]=='0')
+        cnt01++;
+      else
+        cnt10++;
+    }
   }
+  if(cnt01>=2 || cnt10>=2)
+    ans += 2;
+  else if(cnt01>=1 && cnt10>=1)
+    ans++;
   cout << ans << nl;
 }
 

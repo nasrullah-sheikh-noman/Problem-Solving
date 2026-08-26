@@ -91,17 +91,16 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n;
-  ll k;
-  cin >> n >> k;
-  int sum = 0, mx = 0, ans = 0;
-  for (int i = 1; i <= n; i++) {
-    int x;
-    cin >> x;
-    sum += x;
-    mx = max(mx, x);
-    if(sum-mx <= k)
-      ans = i;
+  int a, b, p, q, r;
+  cin >> a >> b >> p >> q >> r;
+  int ans = INT_MAX;
+  for (int i = 0; i <= min(a, b); i++) {
+    int rema = a - i;
+    int remb = b - i;
+    int cst = i * r;
+    cst += ((rema + 1) / 2) * p;
+    cst += ((remb + 1) / 2) * q;
+    ans = min(ans, cst);
   }
   cout << ans << nl;
 }
