@@ -95,23 +95,15 @@ void solve() {
   cin >> n;
   string s;
   cin >> s;
-  int i;
-  for (i = 0; i < n; i++) {
-    if(s[i]=='A') {
-      break;
-    }
+  int ans = 1;
+  int j = 0;
+  for(int i = 1; i < n; i++) {
+    if(s[i]==s[i-1]) {
+      j++;
+      ans = max(ans, j+1);
+    } else j = 0;
   }
-  int b;
-  for (b = n - 1; b >= 0; b--) {
-    if(s[b]=='B') {
-      break;
-    }
-  }
-  int ans = b - i;
-  if(ans>0)
-    cout << ans << nl;
-  else
-    cout << 0 << nl;
+  cout << ans + 1 << nl;
 }
 
 int32_t main() {
