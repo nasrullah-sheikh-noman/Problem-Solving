@@ -1,0 +1,14 @@
+int binaraySearch(vector<int>& arr, int tar, int st, int end) {
+  if(st<=end) {
+    int mid = st + (end - st) / 2;
+    if(arr[mid]==tar)
+      return mid;
+    else if(arr[mid]<tar)
+      return binaraySearch(arr, tar, mid + 1, end);
+    else
+      return binaraySearch(arr, tar, st, mid - 1);
+  }
+  return -1;
+}
+
+return binaraySearch(arr, tar, 0, arr.size() - 1);

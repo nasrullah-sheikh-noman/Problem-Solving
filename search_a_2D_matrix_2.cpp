@@ -1,0 +1,11 @@
+int n = matrix.size(), m = matrix[0].size();
+int r = 0, c = n-1;
+while(r < n && c >= 0) {
+  if(target==matrix[r][c])
+    return true;
+  else if(target<matrix[r][c])
+    c--;
+  else
+    r++;
+}
+return false;
