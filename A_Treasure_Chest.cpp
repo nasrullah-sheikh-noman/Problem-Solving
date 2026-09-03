@@ -91,26 +91,14 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, m, p;
-  cin >> n >> m >> p;
-  // int cnt = 0;
-  // ll ans = m;
-  // int i = 1;
-  // while(ans <= n) {
-  //   ans = m + i * p;
-  //   cnt++;
-  //   i++;
-  // }
-  // cout << cnt << nl;
-
-  // Optimized
-  int ans = 0;
-  if(n<m) {
-    ans = 0;
-  } else {
-    ans = 1 + (n - m) / p;
-  }
-  cout << ans << nl;
+  int x, y, k;
+  cin >> x >> y >> k;
+  if(y<x)
+    cout << x << nl;
+  else if(x+k>=y)
+    cout << y << nl;
+  else
+    cout << y + y - (x + k) << nl;
 }
 
 int32_t main() {
@@ -118,7 +106,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
