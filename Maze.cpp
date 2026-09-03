@@ -1,15 +1,3 @@
-vector<bool> prime(n + 1, true);
-int cnt = 0;
-for (int i = 2; i < n; i++) {
-  if(prime[i]) {
-    cnt++;
-    for (int j * 2; j < n; j+=i) {
-      prime[j] = false;
-    }
-  }
-}
-return cnt;
-
 // Starting with the name of Almighty Allah
 // Practice is the only shortcut to improve
 
@@ -102,8 +90,75 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
+int n, m;
+char grid[1001][1001];
+bool vis[1001][1001];
+pair<int, int> parent[1001][1001];
+
+vector<pair<int, int>> moves = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
+
+bool valid(int ci, int cj) {
+  return ci >= 0 && ci < n && cj >= 0 && cj < m;
+}
+
+void bfs(int si, int sj) {
+  queue<pair<int,int>> q;
+  q.push({si, sj});
+  vis[si][sj] = true;
+  bool fnd = false;
+  while(!q.empty()) {
+    pair<int, int> par = q.front();
+    q.pop();
+    int par_i = par.first;
+    int par_j = par.second;
+    if(grid[par_i][par_j]=='D') break;
+    for (int i = 0; i < 4; i++) {
+      int ci = par_i + moves[i].first;
+      int cj = par_j + moves[i].second;
+      if(valid(ci,cj) && !vis[ci][cj] && ((grid[ci][cj]=='.') || grid[ci][cj]=='D')) {
+        vis[ci][cj] = true;
+        parent[ci][cj] = {par_i, par_j};
+        q.push({ci, cj});
+      }
+    }
+  }
+}
+
 void solve() {
-  
+  cin >> n >> m;
+  int si = -1, sj = -1, di = -1, dj = -1;
+  for(int i = 0; i < n; i++) {
+    for(int j = 0; j < m; j++) {
+      cin >> grid[i][j];
+      if(grid[i][j]=='R') {
+        si = i;
+        sj = j;
+      } else if(grid[i][j]=='D') {
+        di = i;
+        dj = j;
+      }
+    }
+  }
+  memset(vis, false, sizeof(vis));
+  memset(parent, -1, sizeof(parent));
+  bfs(si, sj);
+  if(vis[di][dj]) {
+    int dr = di, dc = dj;
+    while(1) {
+      pair<int, int> par = parent[dr][dc];
+      dr = par.first;
+      dc = par.second;
+      if(dr==-1 && dc ==-1) break;
+      if(grid[dr][dc]!='R')
+        grid[dr][dc] = 'X';
+    }
+  }
+
+  for (int i = 0; i < n; i++) {
+    for(int j = 0; j < m; j++)
+      cout << grid[i][j];
+    cout << nl;
+  }
 }
 
 int32_t main() {
