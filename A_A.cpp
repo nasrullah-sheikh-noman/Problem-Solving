@@ -91,7 +91,20 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  ll n;
+  cin >> n;
+  for(ll i = 1; i <= 19; i++) {
+    ll pow = i;
+    for (int j = 2; j <= i; j++) {
+      pow *= i;
+    }
+    if (pow == n)
+    {
+      cout << i << nl;
+      return;
+    }
+  }
+  cout << -1 << nl;
 }
 
 int32_t main() {
