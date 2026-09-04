@@ -91,7 +91,10 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n 
+  ll n;
+  cin >> n;
+  ll res = (n * (n+1)) / 2;
+  cout << (res * 2) + 1 + n + 1 << nl;
 }
 
 int32_t main() {
@@ -99,7 +102,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
