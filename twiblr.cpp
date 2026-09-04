@@ -91,7 +91,10 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int a, b;
+  cin >> a >> b;
+  int sum = ((2 * a) + 100) - b;
+  cout << sum << nl;
 }
 
 int32_t main() {
