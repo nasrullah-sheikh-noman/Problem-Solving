@@ -91,25 +91,16 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, m;
-  cin >> n >> m;
-  ll sum = 0, sum2 = 0;
-  for (int i = 0; i < n; i++) {
-    int x;
-    cin >> x;
-    sum += x;
-  }
-  for (int i = 0; i < m; i++) {
-    int x;
-    cin >> x;
-    sum2 += x;
-  }
-  if(sum>sum2)
-    cout << "Tsondu" << nl;
-  else if(sum2>sum)
-    cout << "Tenzing" << nl;
+  int n;
+  cin >> n;
+  int st = n / 5;
+  int res = st * 5;
+  st++;
+  int res2 = st * 5;
+  if(abs(res-n) <= abs(res2-n))
+    cout << res << nl;
   else
-    cout << "Draw" << nl;
+    cout << res2 << nl;
 }
 
 int32_t main() {
@@ -117,7 +108,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-   cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();
