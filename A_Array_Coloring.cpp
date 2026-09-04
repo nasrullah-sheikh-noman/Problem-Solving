@@ -91,7 +91,18 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n;
+  cin >> n;
+  vi v(n);
+  int sum = 0;
+  for (int i = 0; i < n; i++) {
+    cin >> v[i];
+    sum += v[i];
+  }
+  if(sum%2)
+    No;
+  else
+    Yes;
 }
 
 int32_t main() {
@@ -99,7 +110,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
