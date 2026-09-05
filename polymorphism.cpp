@@ -25,6 +25,15 @@ class Person {
     // void show(char ch) {
     //   cout << "char : " << ch << endl;
     // }
+
+    //  compile time Polymorphism
+    // Person() {
+    //   cout << "Non_parametarized\n";
+    // }
+
+    // Person(int x) {
+    //   cout << "Parametarized\n";
+    // }
 };
 
 class parent {
@@ -42,7 +51,7 @@ class child: public parent {
 };
 
 int main() {
-  Person p1;
+  // Person p1(9);
   parent p;
   p.getInfo();
 

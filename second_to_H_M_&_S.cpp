@@ -91,14 +91,18 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, m;
-  cin >> n >> m;
-  if(m>n)
-    no;
-  else if(n%2 != m%2)
-    no;
-  else
-    yes;
+  int n;
+  cin >> n;
+  int se = n % 60;
+  n /= 60;
+  int min = n % 60;
+  int h = n / 60;
+  if(h)
+    cout << h << ":";
+  if(min)
+    cout << min << ":";
+  if(se)
+    cout << se;
 }
 
 int32_t main() {
@@ -106,7 +110,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();

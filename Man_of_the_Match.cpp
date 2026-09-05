@@ -91,14 +91,17 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, m;
-  cin >> n >> m;
-  if(m>n)
-    no;
-  else if(n%2 != m%2)
-    no;
-  else
-    yes;
+  int ans = 0, res = 0;
+  for(int i = 1; i <= 22; i++) {
+    int a, b;
+    cin >> a >> b;
+    int sum = a + (b * 20);
+    if(sum>res) {
+      res = sum;
+      ans = i;
+    }
+  }
+  cout << ans << nl;
 }
 
 int32_t main() {
