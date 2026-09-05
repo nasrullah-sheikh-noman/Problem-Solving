@@ -1,6 +1,6 @@
 .vscode/
 .build/
-output/
+output
 .exe
 .o
 .obj
