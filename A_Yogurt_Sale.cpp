@@ -91,11 +91,12 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, a, b;
+  ll n, a, b;
   cin >> n >> a >> b;
-  int res = b + (a * (n - 2));
-  res = min(res, (a * n));
-  cout << res << nl;
+  if((2*a)<=b)
+    cout << n * a << nl;
+  else
+    cout << ((n / 2) * b) + (n%2)*a << nl;
 }
 
 int32_t main() {
