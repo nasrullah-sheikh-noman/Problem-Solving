@@ -16,7 +16,6 @@ public:
       }
       pathvis[src] = false;
     }
-
     void topoOrder(int src, stack<int>& st) {
       vis[src] = true;
       for(auto x: adj_list[src]) {
@@ -25,13 +24,13 @@ public:
       }
       st.push(src);
     }
-
+    
     vector<int> findOrder(int n, vector<vector<int>>& edges) {
       vector<int> ans;
       for(auto x: edges) {
         int a = x[0];
         int b = x[1];
-        adj_list[a].push_back(b);
+        adj_list[b].push_back(a);
       }
       memset(vis, false, sizeof(vis));
       cycle = false;
