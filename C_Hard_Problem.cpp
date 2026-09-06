@@ -91,8 +91,18 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n
-  
+  int m, a, b, c;
+  cin >> m >> a >> b >> c;
+  ll sum = 2 * m;
+  ll res = a + b + c;
+  if(a>m)
+    res -= a - m;
+  if(b>m)
+    res -= b - m;
+  if(sum>=res)
+    cout << res << nl;
+  else
+    cout << sum << nl;
 }
 
 int32_t main() {
@@ -100,7 +110,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
