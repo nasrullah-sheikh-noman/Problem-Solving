@@ -91,7 +91,18 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  string s;
+  cin >> s;
+  reverse(s.begin(), s.end());
+  for (int i = 0; i < s.size(); i++) {
+    if(s[i]=='p')
+      cout << 'q';
+    else if(s[i]=='q')
+      cout << 'p';
+    else
+      cout << 'w';
+  }
+  cout << nl;
 }
 
 int32_t main() {
@@ -99,7 +110,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
