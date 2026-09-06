@@ -17,7 +17,6 @@ class Person {
     // }
 
     // function overloading
-    //  Compile time Polymorphism (Overloading)
 
     // void show(int x) {
     //   cout << "int : " << x << endl;
@@ -26,7 +25,7 @@ class Person {
     //   cout << "char : " << ch << endl;
     // }
 
-    //  compile time Polymorphism
+    //  Compile time Polymorphism (Constructor Overloading)
     // Person() {
     //   cout << "Non_parametarized\n";
     // }
@@ -41,6 +40,9 @@ class parent {
     void getInfo() {
       cout << "Parent class\n";
     }
+    virtual void show() {
+      cout << "Parent virtural\n";
+    }
 };
 
 class child: public parent {
@@ -52,8 +54,11 @@ class child: public parent {
 
 int main() {
   // Person p1(9);
-  parent p;
-  p.getInfo();
+  // parent p;
+  // p.getInfo();
+
+  child p1;
+  p1.show();
 
   return 0;
 }
