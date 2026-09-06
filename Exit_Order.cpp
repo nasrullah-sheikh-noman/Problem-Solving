@@ -93,18 +93,18 @@ int my_rand(int l, int r) {
 void solve() {
   int n;
   cin >> n;
-  int odd = 0, even = 0, two = 0;
+  vi v(n);
+  cinv(v);
+  int prevgrp = 0;
   for (int i = 0; i < n; i++) {
-    int x;
-    cin >> x;
-    if(x%2)
-      odd++;
-    else if(x%4==0)
-      even++;
-    else
-      two++;
+    int currgrp = (v[i] - 1) / 10;
+    if(currgrp<prevgrp) {
+      no;
+      return;
+    }
+    prevgrp = currgrp;
   }
-  cout << max(odd, max(even, two)) << nl;
+  yes;
 }
 
 int32_t main() {
@@ -112,7 +112,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-   cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();

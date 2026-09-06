@@ -91,20 +91,30 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n;
-  cin >> n;
-  int odd = 0, even = 0, two = 0;
+  int n, k;
+  cin >> n >> k;
+  list<int> l;
+  vector<list<int>::iterator> pos(n + 1);
   for (int i = 0; i < n; i++) {
     int x;
     cin >> x;
-    if(x%2)
-      odd++;
-    else if(x%4==0)
-      even++;
-    else
-      two++;
+    l.push_back(x);
+    auto it = l.end();
+    --it;
+    pos[x] = it;
   }
-  cout << max(odd, max(even, two)) << nl;
+  while(k--) {
+    int x;
+    cin >> x;
+    l.erase(pos[x]);
+    l.push_back(x);
+    auto it = l.end();
+    --it;
+    pos[x] = it;
+
+  }
+  for(auto x: l)
+    cout << x << " ";
 }
 
 int32_t main() {
@@ -112,7 +122,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-   cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();
