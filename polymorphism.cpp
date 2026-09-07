@@ -47,8 +47,11 @@ class parent {
 
 class child: public parent {
   public:
-    void getInfo() {
-      cout << "child class\n";
+    // void getInfo() {
+    //   cout << "child class\n";
+    // }
+    void show() {
+      cout << "Child virtural\n";
     }
 };
 
@@ -59,6 +62,7 @@ int main() {
 
   child p1;
   p1.show();
+  p1.getInfo();
 
   return 0;
 }
