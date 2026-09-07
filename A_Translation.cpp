@@ -91,7 +91,15 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  string s;
+  cin >> s;
+  string s2;
+  cin >> s2;
+  reverse(s.begin(), s.end());
+  if(s==s2)
+    Yes;
+  else
+    No;
 }
 
 int32_t main() {
