@@ -91,7 +91,16 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n;
+  cin >> n;
+  int mn = INT_MAX, sum = 0;
+  for (int i = 0; i < n; i++) {
+    int x;
+    cin >> x;
+    sum += x;
+    mn = min(mn, x);
+  }
+  cout << sum - mn << nl;
 }
 
 int32_t main() {
@@ -99,7 +108,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
