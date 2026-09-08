@@ -91,7 +91,33 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n;
+  cin >> n;
+  vi v(n), v2(n);
+  cinv(v);
+  cinv(v2);
+  vi res = v;
+  srt(res);
+  int cnt = 1,f, l;
+  do {
+    bool ok = true;
+    for (int i = 0; i < n; i++) {
+      if(v[i]!=res[i])
+        ok = false;
+    }
+    if(ok)
+      f = cnt;
+    ok = true;
+    for (int i = 0; i < n; i++) {
+      if(v2[i]!=res[i])
+        ok = false;
+    }
+    if(ok)
+      l = cnt;
+    cnt++;
+
+  } while (next_permutation(res.begin(), res.end()));
+  cout << abs(f - l) << nl;
 }
 
 int32_t main() {
