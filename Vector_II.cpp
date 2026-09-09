@@ -91,17 +91,28 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, k;
-  cin >> n >> k;
-  vi v(n);
-  cinv(v);
-  int val = v[k-1];
-  int cnt = 0;
-  for(int i = 0; i < n; i++) {
-    if(v[i]>=val && v[i]>0)
-      cnt++;
+  int n, q; cin >> n >> q;
+  vi v[n];
+  while(q--) {
+    int x, y; cin >> x;
+    if(x==0) {
+      cin >> x >> y;
+      v[x].push_back(y);
+    }
+    else if(x==1) {
+      cin >> y;
+      int m = v[y].size();
+      for (int i = 0; i < m; i++) {
+        cout << v[y][i];
+        if(i!=m-1)
+          cout << " ";
+      }
+      cout << nl;
+    } else {
+      cin >> x;
+      v[x].clear();
+    }
   }
-  cout << cnt << nl;
 }
 
 int32_t main() {
