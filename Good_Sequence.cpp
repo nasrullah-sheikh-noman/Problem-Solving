@@ -94,14 +94,20 @@ void solve() {
   int n;
   cin >> n;
   vi v(n);
-  ll fre[1000000001] = {0};
-  ll cnt = 0;
+  vector<int> fre(n+1);
+  int cnt = 0;
   for(int x, i = 0; i < n; i++) {
     cin >> x;
-    fre[x]++;
+    if(x>n)
+      cnt++;
+    else 
+      fre[x]++; 
   }
-  for (int i = 0; i < 1000000001; i++) {
-    cnt += fre[i] - i;
+  for (int i = 1; i <= n; i++) {
+    if(fre[i]>i)
+      cnt += fre[i] - i;
+    else if(fre[i]!=i)
+      cnt += fre[i];
   }
   cout << cnt << nl;
 }
