@@ -91,22 +91,19 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, b, d;
-  cin >> n >> b >> d;
+  int n;
+  cin >> n;
   vi v(n);
-  ll sum = 0, cnt = 0;
-  for (int i = 0, x; i < n; i++) {
-    cin >> x;
-    if(x<=b)  {
-      sum += x;
-    }
-    if (sum > d)
-    {
-      cnt++;
-      sum = 0;
-    }
+  cinv(v);
+  vi v2 = v;
+  srt(v2);
+  int mx = v2[n - 1], mx2 = v2[n - 2];
+  for (int i = 0; i < n; ++i) {
+    if(v[i]!=mx) cout << v[i] - mx << " ";
+    else
+      cout << v[i] - mx2 << " ";
   }
-  cout << cnt << nl;
+  cout << nl;
 }
 
 int32_t main() {
@@ -114,7 +111,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
