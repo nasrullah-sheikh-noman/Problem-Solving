@@ -91,7 +91,15 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n;
+  cin >> n;
+  vi v(n);
+  set<int> s;
+  for(int x, i =0; i < n; i++) {
+    cin >> x;
+    s.insert(x);
+  }
+  cout << s.size() << nl;
 }
 
 int32_t main() {
