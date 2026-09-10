@@ -94,12 +94,14 @@ void solve() {
   int n;
   cin >> n;
   vi v(n);
-  set<int> s;
-  for(int x, i =0; i < n; i++) {
-    cin >> x;
-    s.insert(x);
+  cinv(v);
+  srt(v);
+  int ans = 0;
+  for(int i = 0; i < n; i++) {
+    if(ans<v[i])
+      ans++;
   }
-  cout << s.size() << nl;
+  cout << ans << nl;
 }
 
 int32_t main() {
