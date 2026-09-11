@@ -90,23 +90,72 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-void solve() {
-  int n, m;
-  cin >> n >> m;
-  vi v(m);
-  bool vis[101];
-  memset(vis, false, sizeof(vis));
-  int x;
-  char c;
-  for(int i = 0; i < m; i++) {
-    cin >> x >> c;
-    if(!vis[x] && c=='M') {
-      yes;
-      vis[x] = true;
-    } else {
-      no;
+struct Edges {
+    int a, b;
+    ll c;
+    Edges(int a, int b, ll c) {
+      this->a = a;
+      this->b = b;
+      this->c = c;
+    }
+};
+
+int n, e;
+vector<Edges> edge_list;
+ll dis[1001];
+
+void bellman_ford() {
+  for(int i = 0; i < n-1; i++) {
+    for(auto edge: edge_list) {
+      int a = edge.a;
+      int b = edge.b;
+      int c = edge.c;
+      if(dis[a]!=LINF && dis[a]+c<dis[b]) {
+        dis[b] = dis[a] + c;
+      }
     }
   }
+  bool cycle = false;
+  for(auto edge: edge_list) {
+    int a = edge.a;
+    int b = edge.b;
+    int c = edge.c;
+    if(dis[a]!=LINF && dis[a]+c <dis[b]) {
+      cycle = true;
+      break;
+    }
+  }
+  if(cycle) {
+    cout << "Negative Cycle Detected\n";
+  }
+  int q;
+  cin >> q;
+  while(q--) {
+    int dc;
+    cin >> dc;
+    if(!cycle) {
+      if(dis[dc]==LINF)
+        cout << "Not Possible\n";
+      else
+        cout << dis[dc] << nl;
+    }
+  }
+}
+
+void solve() {
+  cin >> n >> e;
+  int a, b;
+  ll c;
+  while(e--) {
+    cin >> a >> b >> c;
+    edge_list.push_back(Edges(a, b, c));
+  }
+  for (int i = 1; i <= n; i++)
+    dis[i] = LINF;
+  int sc;
+  cin >> sc;
+  dis[sc] = 0;
+  bellman_ford();
 }
 
 int32_t main() {
