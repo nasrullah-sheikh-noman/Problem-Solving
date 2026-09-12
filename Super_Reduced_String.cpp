@@ -93,21 +93,22 @@ int my_rand(int l, int r) {
 void solve() {
   string s;
   cin >> s;
-  if(sz(s)!=8) {
-    no;
-    return;
-  }
-  if(!isupper(s[0]) || !isupper(s[7]) || s[1]=='0') {
-    no;
-    return;
-  }
-  for (int i = 1; i <= 6; i++) {
-    if(!isdigit(s[i])) {
-      no;
-      return;
+  int ok = 1, n = sz(s);
+  while(ok) {
+    ok = 0;
+    n = sz(s);
+    for(int i = 0; i < n-1; i++) {
+      if(s[i]==s[i+1]) {
+        s.erase(i, 2);
+        ok = 1;
+        break;
+      }
     }
   }
-  yes;
+  if(s=="")
+    cout << "Empty String\n";
+  else
+    cout << s << nl;
 }
 
 int32_t main() {
