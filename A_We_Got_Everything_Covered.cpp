@@ -91,17 +91,16 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
+  int n, k;
+  cin >> n >> k;
   string s;
-  cin >> s;
-  int flag = 0;
-  for (int i = 1; i < sz(s) / 2; i++) {
-    if(s[i]!=s[i-1])
-      flag = 1;
+  for(int i = 0; i < k; i++) {
+    s += 'a' + i;
   }
-  if(flag)
-    Yes;
-  else
-    No;
+  for (int i = 0; i < n; i++) {
+    cout << s;
+  }
+  cout << nl;
 }
 
 int32_t main() {

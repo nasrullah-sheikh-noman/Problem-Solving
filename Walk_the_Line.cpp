@@ -91,17 +91,26 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  string s;
-  cin >> s;
-  int flag = 0;
-  for (int i = 1; i < sz(s) / 2; i++) {
-    if(s[i]!=s[i-1])
-      flag = 1;
+  int n, s;
+  ll l;
+  cin >> n >> s >> l;
+  vl pre(n);
+  for (int x, i = 1; i < n; i++) {
+    cin >> x;
+    pre[i] = pre[i - 1] + x;
   }
-  if(flag)
-    Yes;
-  else
-    No;
+  s--;
+  ll ans = 1;
+  for (int i = 0; i <= s; i++) {
+    ll left = pre[s] - pre[i];
+    for (int j = s; j < n; j++) {
+      ll right = pre[j] - pre[s];
+      ll cost = min(2 * left + right, left + right * 2);
+      if(cost<=l)
+        ans = max(ans, (ll)j - i + 1);
+    }
+  }
+  cout << ans << nl;
 }
 
 int32_t main() {
@@ -109,7 +118,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();

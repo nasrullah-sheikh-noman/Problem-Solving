@@ -91,17 +91,21 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  string s;
-  cin >> s;
-  int flag = 0;
-  for (int i = 1; i < sz(s) / 2; i++) {
-    if(s[i]!=s[i-1])
-      flag = 1;
+  int n;
+  cin >> n;
+  int one = 0, ten = 0, hundred = 0;
+  for (int i = 0; i < n; i++) {
+    int x;
+    cin >> x;
+    int bill = (x + 999) / 1000;
+    int chng = bill * 1000 - x;
+    hundred += chng / 100;
+    chng %= 100;
+    ten += chng / 10;
+    chng %= 10;
+    one += chng;
   }
-  if(flag)
-    Yes;
-  else
-    No;
+  cout << one << " " << ten << " " << hundred << nl;
 }
 
 int32_t main() {
@@ -109,7 +113,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();

@@ -93,15 +93,11 @@ int my_rand(int l, int r) {
 void solve() {
   string s;
   cin >> s;
-  int flag = 0;
-  for (int i = 1; i < sz(s) / 2; i++) {
-    if(s[i]!=s[i-1])
-      flag = 1;
+  for (int i = 0; i < sz(s)-1; i++)
+  {
+    cout << s[i] << 'o';
   }
-  if(flag)
-    Yes;
-  else
-    No;
+  cout << s[sz(s) - 1] << nl;
 }
 
 int32_t main() {
@@ -109,7 +105,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();
