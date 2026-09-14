@@ -91,20 +91,26 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n;
+  int n, i;
   cin >> n;
   string s;
   cin >> s;
-  int ans = -1;
-  for(int i = 0; i < sz(s)-1; i++) {
-    if(s[i]=='R'&&s[i+1]=='L') {
-      break;
-    } else if(s[i]=='L'&&s[i+1]=='R') {
+  int ans = 0;
+  for(i = 0; i < n-1; i++) {
+    if(s[i]!=s[i+1]) {
       ans = 1;
       break;
     }
   }
-  cout << ans << nl;
+  if(ans==0) {
+    cout << -1 << nl;
+  } else {
+    if(s[i]=='R')
+      cout << 0 << nl;
+    else {
+      cout << i + 1 << nl;
+    }
+  }
 }
 
 int32_t main() {
