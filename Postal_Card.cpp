@@ -90,25 +90,26 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-void solve()
-{
-  int n;
-  cin >> n;
-  vc<string> s(n);
-  cinv(s);
-  for (int i = 0; i < n; i++)
-  {
-    bool ok = false;
-    for (int j = 0; j < i; j++)
-    {
-      if (s[i] == s[j])
-        ok = true;
-    }
-    if (ok)
-      Yes;
-    else
-      No;
+void solve() {
+  int n, m;
+  cin >> n >> m;
+  string s;
+  vector<string> f;
+  while(n--) {
+    cin >> s;
+    f.push_back(s.substr(3,3));
   }
+  int cnt = 0;
+  vector<string> v;
+  while(m--) {
+    cin >> s;
+    v.push_back(s);
+  }
+  for(auto& it: f) {
+    if(find(v.begin(), v.end(), it) != v.end())
+      cnt++;
+  }
+  cout << cnt << nl;
 }
 
 int32_t main() {

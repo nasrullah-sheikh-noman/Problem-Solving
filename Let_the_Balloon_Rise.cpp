@@ -90,24 +90,18 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-void solve()
-{
-  int n;
-  cin >> n;
-  vc<string> s(n);
-  cinv(s);
-  for (int i = 0; i < n; i++)
-  {
-    bool ok = false;
-    for (int j = 0; j < i; j++)
-    {
-      if (s[i] == s[j])
-        ok = true;
-    }
-    if (ok)
-      Yes;
-    else
-      No;
+void solve(int n) {
+  string s;
+  map<string, int> mp;
+  int mx = 0;
+  for (int i = 0; i < n; i++) {
+    cin >> s;
+    mp[s]++;
+    mx = max(mx, mp[s]);
+  }
+  for(auto& it: mp) {
+    if(it.second==mx)
+      cout << it.first << nl;
   }
 }
 
@@ -115,11 +109,11 @@ int32_t main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int t = 1;
+  int n;
   // cin >> t;
 
-  while (t--) {
-    solve();
+  while (cin>>n) {
+    solve(n);
   }
 
   return 0;
