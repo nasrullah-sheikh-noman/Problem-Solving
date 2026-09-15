@@ -91,7 +91,19 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n, x, y;
+  cin >> n;
+  string s;
+  map<pair<int, int>, string> mp;
+  for (int i = 0; i < n; i++) {
+    cin >> x >> y >> s;
+    mp[{x, y}] = s;
+  }
+  int m; cin >> m;
+  while(m--) {
+    cin >> x >> y;
+    cout << mp[{x, y}] << nl;
+  }
 }
 
 int32_t main() {
