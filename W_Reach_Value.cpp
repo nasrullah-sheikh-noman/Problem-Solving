@@ -90,23 +90,23 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
+bool rec(ll tar) {
+  if(tar==1)
+    return true;
+  if(tar%10 == 0 && rec(tar/10))
+    return true;
+  if(tar%20==0 && rec(tar/20))
+    return true;
+  return false;
+}
+
 void solve() {
-  int n;
-  cin >> n;
-  map<int, int> mp;
-  for (int x, i = 0; i < n; i++) {
-    cin >> x;
-    mp[x]++;
-  }
-  int cnt = 0;
-  for(auto& it: mp) {
-    // cout << it.first << " -> " << it.second << nl;
-    if(it.second>it.first)
-      cnt += (it.second - it.first);
-    else if(it.second<it.first)
-      cnt += it.second;
-  }
-  cout << cnt << nl;
+  ll tar;
+  cin >> tar;
+  if(rec(tar))
+    Yes;
+  else
+    No;
 }
 
 int32_t main() {
@@ -114,7 +114,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();

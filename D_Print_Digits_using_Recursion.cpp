@@ -90,23 +90,19 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
+void rec(int n) {
+  if(n==0)
+    return;
+  rec(n / 10);
+  cout << n % 10 << " ";
+} 
+
 void solve() {
-  int n;
-  cin >> n;
-  map<int, int> mp;
-  for (int x, i = 0; i < n; i++) {
-    cin >> x;
-    mp[x]++;
-  }
-  int cnt = 0;
-  for(auto& it: mp) {
-    // cout << it.first << " -> " << it.second << nl;
-    if(it.second>it.first)
-      cnt += (it.second - it.first);
-    else if(it.second<it.first)
-      cnt += it.second;
-  }
-  cout << cnt << nl;
+  int n; cin >> n;
+  if(n==0)
+    cout << 0 ;
+  else rec(n);
+  cout << nl;
 }
 
 int32_t main() {
@@ -114,7 +110,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+   cin >> t;
 
   while (t--) {
     solve();
