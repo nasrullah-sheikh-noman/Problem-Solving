@@ -91,15 +91,28 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  vi v(3);
-  cinv(v);
-  srt(v);
-  int mx = v[2];
-  int sum = v[0] + v[1];
-  if(sum>=mx-1)
-    Yes;
-  else
-    No;
+  int n, a, b, c;
+  cin >> n;
+  vector<tuple<int, int, int>> v;
+  while(n--) {
+    cin >> a >> b >> c;
+    v.push_back({a, b, c});
+  }
+  sort(v.begin(), v.end());
+  for(auto x: v) {
+    cout << get<0>(x) << " " << get<1>(x) << " " << get<2>(x) << nl;
+  }
+
+  // using pair
+  // vector<pair<pair<int,int>, int>> p;
+  // for (int i = 0; i < n; i++) {
+  //   cin >> a >> b >> c;
+  //   p.push_back({{a,b},c});
+  // }
+  // sort(p.begin(), p.end());
+  // for(auto x: p) {
+  //   cout << x.first.first << " " << x.first.second << " " << x.second << nl;
+  // }
 }
 
 int32_t main() {
@@ -107,7 +120,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();

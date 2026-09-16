@@ -98,7 +98,6 @@ void solve() {
     string s1, s2;
     cin >> s1 >> s2;
     st.insert({s1, s2});
-
   }
   cout << st.size() << nl;
 }
