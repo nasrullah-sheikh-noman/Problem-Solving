@@ -91,18 +91,23 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, x, y;
-  cin >> n >> x >> y;
-  set<pair<int, int>> st;
-  int a, b;
-  while(n--) {
-    cin >> a >> b;
-    a -= x;
-    b -= y;
-    int g = gcd(a, b);
-    st.insert({a / g, b / g});
+  int n;
+  cin >> n;
+  vi v(n);
+  cinv(v);
+  srt(v);
+  ll sum = 0;
+  for(auto x: v)
+    sum += x;
+  ll leftsum = 0;
+  ll ans = 0;
+  for (int i = 1; i < n; i++) {
+    leftsum += v[i - 1];
+    ll rightsum = sum - leftsum;
+    ll cur = leftsum * (n - i) + rightsum * i;
+    ans = max(ans, cur);
   }
-  cout << st.size() << nl;
+  cout << ans << nl;
 }
 
 int32_t main() {
@@ -110,7 +115,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();

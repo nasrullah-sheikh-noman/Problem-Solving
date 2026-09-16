@@ -91,18 +91,12 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, x, y;
-  cin >> n >> x >> y;
-  set<pair<int, int>> st;
-  int a, b;
-  while(n--) {
-    cin >> a >> b;
-    a -= x;
-    b -= y;
-    int g = gcd(a, b);
-    st.insert({a / g, b / g});
-  }
-  cout << st.size() << nl;
+  int n, m;
+  cin >> n >> m;
+  if(n-1==m)
+    no;
+  else
+    yes;
 }
 
 int32_t main() {
@@ -110,7 +104,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
