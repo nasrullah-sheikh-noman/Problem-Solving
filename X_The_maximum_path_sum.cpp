@@ -91,16 +91,19 @@ int my_rand(int l, int r) {
 }
 
 int n, m;
-int mat[11][11];
+ll mat[11][11];
+ll dp[11][11];
 
-int rec(int i, int j) {
+ll rec(int i, int j) {
   if(i>=n || j >=m)
     return -INF;
-  if(i==n-1 && j==n-1)
+  if(i==n-1 && j==m-1)
     return mat[i][j];
+  if(dp[i][j]!=-INF)
+    return dp[i][j];
   ll op1 = rec(i + 1, j);
   ll op2 = rec(i, j + 1);
-  return mat[i][j] + max(op1, op2);
+  return dp[i][j] = mat[i][j] + max(op1, op2);
 }
 
 void solve() {
@@ -108,6 +111,7 @@ void solve() {
   for (int i = 0; i < n; i++) {
     for(int j= 0; j < m; j++) {
       cin >> mat[i][j];
+      dp[i][j] = -INF;
     }
   }
   cout << rec(0, 0) << nl;
