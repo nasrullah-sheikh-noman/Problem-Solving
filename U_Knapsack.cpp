@@ -90,39 +90,35 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-int n, mx_weight;
-int val[1001], weight[1001];
+int n, w;
+int width[51], val[1001];
 int dp[1001][1001];
 
-int knapsack(int i, int mx_weight) {
-  if(i<0 || mx_weight<=0)
+int knapsack(int i, int w) {
+  if(i<0 || w<=0)
     return 0;
-  if(dp[i][mx_weight]!=-1)
-    return dp[i][mx_weight];
-  if(weight[i]<=mx_weight) {
-    int op1 = knapsack(i - 1, mx_weight - weight[i]) + val[i];
-    int op2 = knapsack(i - 1, mx_weight);
-    return dp[i][mx_weight] = max(op1, op2);
-  } else {
-    return dp[i][mx_weight] = knapsack(i-1, mx_weight);
-  }
+  if(dp[i][w]!=-1)
+    return dp[i][w];
+  if(width[i] <= w) {
+    int op1 = knapsack(i - 1, w - width[i]) + val[i];
+    int op2 = knapsack(i - 1, w);
+    return dp[i][w] = max(op1, op2);
+  } else
+    return dp[i][w] = knapsack(i - 1, w);
 }
 
 void solve() {
-  cin >> n;
-  for (int i = 0; i < n; i++) {
-    cin >> val[i];
+  cin >> n >> w;
+  for (int i = 0; i < n; i++)
+  {
+    cin >> width[i] >> val[i];
   }
   for (int i = 0; i < n; i++) {
-    cin >> weight[i];
-  }
-  cin >> mx_weight;
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j <= mx_weight; j++) {
+    for (int j = 0; j <= w; j++) {
       dp[i][j] = -1;
     }
   }
-  cout << knapsack(n - 1, mx_weight) << endl;
+  cout << knapsack(n - 1, w) << nl;
 }
 
 int32_t main() {
