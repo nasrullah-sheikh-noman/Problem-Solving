@@ -91,7 +91,29 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n, a;
+  cin >> n;
+  set<int> st;
+  ll mx = 0;
+  for (int i = 0; i< n; i++)
+  {
+    cin >> a ;
+    if(st.find(a)!=st.end()) {
+      st.erase(a);
+    } else
+      st.insert(a);
+    mx = max(mx, (ll)st.size());
+  }
+  for (int i = 0; i< n; i++)
+  {
+    cin >> a ;
+    if(st.find(a)!=st.end()) {
+      st.erase(a);
+    } else
+      st.insert(a);
+    mx = max(mx, (ll)st.size());
+  }
+  cout << mx << nl;
 }
 
 int32_t main() {
