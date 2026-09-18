@@ -91,16 +91,25 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, a, b;
+  int n, x;
   cin >> n;
-  multiset<pair<int, int>> st;
-  while(n--) {
-    cin >> a >> b;
-    st.insert({a, -b});
+  ll ans = 0;
+  multiset<long long> st;
+  for(int i = 0; i < n; i++) {
+    cin >> x;
+    st.insert(x);
   }
-  for(auto x: st) {
-    cout << x.first << " " << -x.second << nl;
-  }
+    while(st.size()>=2) {
+      auto it = st.begin();
+      auto it2 = it;
+      it++;
+      ll sum = *it + *it2;
+      ans += sum;
+      st.insert(sum);
+      st.erase(it2);
+      st.erase(it);
+    }
+  cout << ans << nl;
 }
 
 int32_t main() {
