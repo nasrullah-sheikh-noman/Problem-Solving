@@ -15,7 +15,7 @@ using ui8 = __uint128_t;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 
-template<typename T>
+template <typename T>
 using vc = vector<T>;
 
 using vi = vc<int>;
@@ -41,18 +41,27 @@ const ld PI = acosl(-1.0L);
 #define rvs(v) reverse(all(v))
 #define sz(x) (int)((x).size())
 #define nl '\n'
-#define cinv(v) for(auto &x : (v)) cin >> x
-#define coutv(v) for(auto &x : (v)) cout << x << ' '; cout << nl
-#define coutvl(v) for(auto &x : (v)) cout << x << nl
+#define cinv(v)       \
+  for (auto &x : (v)) \
+  cin >> x
+#define coutv(v)      \
+  for (auto &x : (v)) \
+    cout << x << ' '; \
+  cout << nl
+#define coutvl(v)     \
+  for (auto &x : (v)) \
+  cout << x << nl
 #define Yes cout << "YES" << nl
 #define No cout << "NO" << nl
 #define yes cout << "Yes" << nl
 #define no cout << "No" << nl
 
 //==================== FUNCTIONS ====================//
-template<typename T>
-T gcd(T a, T b) {
-  while (b) {
+template <typename T>
+T gcd(T a, T b)
+{
+  while (b)
+  {
     T t = a % b;
     a = b;
     b = t;
@@ -60,23 +69,28 @@ T gcd(T a, T b) {
   return a;
 }
 
-template<typename T>
-T lcm(T a, T b) {
+template <typename T>
+T lcm(T a, T b)
+{
   return a / gcd(a, b) * b;
 }
 
-template<typename T>
-bool ckmin(T &a, T b) {
-  if (b < a) {
+template <typename T>
+bool ckmin(T &a, T b)
+{
+  if (b < a)
+  {
     a = b;
     return true;
   }
   return false;
 }
 
-template<typename T>
-bool ckmax(T &a, T b) {
-  if (b > a) {
+template <typename T>
+bool ckmax(T &a, T b)
+{
+  if (b > a)
+  {
     a = b;
     return true;
   }
@@ -86,48 +100,45 @@ bool ckmax(T &a, T b) {
 //==================== RANDOM ====================//
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
-int my_rand(int l, int r) {
+int my_rand(int l, int r)
+{
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-void solve() {
-  int n;
-  cin >> n;
-  vi v(n);
-  set<pair<int, int>> st;
-  st.insert({-n, 0});
-  int i = 0;
-  while(st.size()) {
-    auto [x, y] = *st.begin();
-    x = -x;
-    st.erase(st.begin());
-    i++;
-    if(x%2) {
-      v[x / 2 + y] = i;
-      int sz = x / 2;
-      if(sz==0) continue;
-      st.insert({-sz, y});
-      st.insert({-sz, y+sz+1});
-    } else {
-      v[y + x / 2 - 1] = i;
-      int sz = x / 2;
-      st.insert({-sz, y + sz});
-      sz--;
-      if(sz==0) continue;
-      st.insert({-sz, y});
-    }
+void solve()
+{
+  string s;
+  cin >> s;
+  stack<char> st;
+  for (auto c : s)
+  {
+    if (st.size() > 0 && c == st.top())
+      st.pop();
+    else
+      st.push(c);
   }
-  coutv(v);
+  stack<char> st2;
+  while (st.size())
+  {
+    st2.push(st.top());
+    st.pop();
+  }
+  while(st2.size()) {
+    cout << st2.top();
+    st2.pop();
+  }
 }
 
-int32_t main() {
+int32_t main()
+{
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
   int t = 1;
-   cin >> t;
+  // cin >> t;
 
-  while (t--) {
+  while (t--)
+  {
     solve();
   }
 
