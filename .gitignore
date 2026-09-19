@@ -1,6 +1,7 @@
 .vscode/
 .build/
 .cph
+.cph/
 output/
 *.exe
 *.o
