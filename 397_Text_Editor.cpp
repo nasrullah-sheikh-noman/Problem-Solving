@@ -91,7 +91,39 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  string s;
+  cin >> s;
+  stack<char> l, r;
+  for(auto c: s) {
+    if(c=='L') {
+      if(l.size()) {
+        char c2 = l.top();
+        l.pop();
+        r.push(c2);
+      }
+    } else if(c=='R') {
+      if(r.size()) {
+        char c2 = r.top();
+        r.pop();
+        l.push(c2);
+      }
+    } else {
+      l.push(c);
+    }
+  }
+  stack<char> ans;
+  while(l.size()) {
+    ans.push(l.top());
+    l.pop();
+  }
+  while(ans.size()) {
+    cout << ans.top();
+    ans.pop();
+  }
+  while(r.size()) {
+    cout << r.top();
+    r.pop();
+  }
 }
 
 int32_t main() {
