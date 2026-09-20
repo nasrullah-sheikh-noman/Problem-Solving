@@ -91,7 +91,24 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n, x;
+  cin >> n;
+  queue<int> q;
+  while(n--) {
+    cin >> x;
+    if(x==1) {
+      cin >> x;
+      q.push(x);
+    } else if(x==2) {
+      if(q.size())
+        q.pop();
+    } else {
+      if(q.size())
+        cout << q.front() << nl;
+      else
+        cout << "Empty!\n";
+    }
+  }
 }
 
 int32_t main() {
