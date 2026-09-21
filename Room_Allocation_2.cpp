@@ -91,30 +91,15 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int x, y, n;
+  int n;
   cin >> n;
-  vector<tuple<int, int, int>> v;
-  for (int i = 1; i <= n; i++) {
-    cin >> x >> y;
-    v.push_back({x, 0, i});
-    v.push_back({y, 1, i});
+  vi v(n);
+  int ans = 0;
+  for (int i = 0; i < n; i++) {
+    cin >> v[i];
+    ans += (v[i] + 1) / 2;
   }
-  sort(v.begin(), v.end());
-  priority_queue<int, vector<int>, greater<int>> pq;
-  for (int i = 1; i <= n; i++)
-    pq.push(i);
-  vector<int> ans(n+1);
-  for (int i = 0; i < sz(v); i++) {
-    if(get<1>(v[i])==0) {
-      ans[get<2>(v[i])] = pq.top();
-      pq.pop();
-    } else {
-      pq.push(ans[get<2>(v[i])]);
-    }
-  }
-  cout << *max_element(ans.begin(), ans.end()) << nl;
-  for (int i = 1; i <= n; i++)
-    cout << ans[i] << " ";
+  cout << ans << nl;
 }
 
 int32_t main() {
@@ -122,7 +107,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
