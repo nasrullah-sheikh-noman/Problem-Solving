@@ -91,7 +91,32 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n;
+  cin >> n;
+  vi v(n + 1);
+  priority_queue<pair<int,int>> pq;
+  pq.push({n, -1});
+  int i = 1;
+  while(pq.size()) {
+    auto [d, l] = pq.top();
+    pq.pop();
+    l = -l;
+    int r = d + l - 1;
+    int cur;
+    if(d%2) {
+      cur = (l + r) / 2;
+    } else {
+      cur = (l + r - 1) / 2;
+    }
+    v[cur] = i;
+    i++;
+    if(cur-l) pq.push({cur - l, -l});
+    if(r-cur) pq.push({r - cur, -(cur + 1)});
+  }
+  for (int j = 1; j <= n; j++) {
+    cout << v[j] << " ";
+  }
+  cout << nl;
 }
 
 int32_t main() {
@@ -99,7 +124,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  // cin >> t;
+  cin >> t;
 
   while (t--) {
     solve();
