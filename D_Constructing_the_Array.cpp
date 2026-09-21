@@ -91,38 +91,7 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  int n, m, l;
-  cin >> n >> m >> l;
-  vector<pair<int, int>> a, b;
-  for (int i = 0; i < n; i++) {
-    int l, r;
-    cin >> l >> r;
-    a.push_back({l, r - l + 2});
-  }
-  for (int i = 0; i< m; i++) {
-    int x, v;
-    cin >> x >> v;
-    b.push_back({x, v});
-  }
-  priority_queue<int> pq;
-  int j = 0, k = 1, ans = 0;
-  for (int i = 0; i < n; i++) {
-    while(j<m && b[j].first < a[i].first) {
-      pq.push(b[j].second);
-      j++;
-    }
-    while(k<a[i].second) {
-      if(!pq.size()) {
-        ans = -1;
-        break;
-      } 
-      k += pq.top();
-      pq.pop();
-      ans++;
-    }
-    if(ans==-1) break;
-  }
-  cout << ans << nl;
+  
 }
 
 int32_t main() {
@@ -130,7 +99,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();
