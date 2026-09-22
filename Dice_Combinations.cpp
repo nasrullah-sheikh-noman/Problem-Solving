@@ -90,20 +90,36 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-vector<ll> dp(1000005, LLONG_MAX);
+vector<ll> dp(1000005, -1);
+
+int rec(int n) {
+  if(n<0)
+    return 0;
+  if(dp[n]!=-1)
+    return dp[n];
+  ll cnt = 0;
+  for (int i = 1; i <= 6; i++) {
+    cnt += rec(n - i);
+    cnt %= MOD;
+  }
+  return dp[n] = cnt;
+}
 
 void solve() {
   int n;
   cin >> n;
   dp[0] = 1;
-  for (int i = 1; i <= n; i++) {
-    ll cnt = 0;
-    for (int j = i - 1; j >= max(0,i-6); j--) {
-      cnt += dp[j]%MOD;
-    }
-    dp[i] = cnt%MOD;
-  }
-  cout << dp[n]%MOD << nl;
+  cout << rec(n) << nl;
+
+  // dp[0] = 1;
+  // for (int i = 1; i <= n; i++) {
+  //   ll cnt = 0;
+  //   for (int j = i - 1; j >= max(0,i-6); j--) {
+  //     cnt += dp[j]%MOD;
+  //   }
+  //   dp[i] = cnt%MOD;
+  // }
+  // cout << dp[n]%MOD << nl;
 }
 
 int32_t main() {
