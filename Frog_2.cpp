@@ -90,21 +90,21 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-vector<int> dp(100004, -1);
+vector<int> dp(100004, INT_MAX);
 
-int minCost(int i, int k, int n, vector<int> &v) {
-  if(i>=n)
-    return 0;
-  if(i==n-1)
-    return abs(v[i] - v[i + 1]);
-  if(dp[i]!=-1)
-    return dp[i];
-  int mn = INT_MAX;
-  for (int j = i+1; j <= min(i+k, n); j++) {
-    mn = min(mn, abs(v[i] - v[j]) + minCost(j, k, n, v));
-  }
-  return dp[i] = mn;
-}
+// int minCost(int i, int k, int n, vector<int> &v) {
+//   if(i>=n)
+//     return 0;
+//   if(i==n-1)
+//     return abs(v[i] - v[i + 1]);
+//   if(dp[i]!=-1)
+//     return dp[i];
+//   int mn = INT_MAX;
+//   for (int j = i+1; j <= min(i+k, n); j++) {
+//     mn = min(mn, abs(v[i] - v[j]) + minCost(j, k, n, v));
+//   }
+//   return dp[i] = mn;
+// }
 
 void solve() {
   int n, k;
@@ -113,7 +113,16 @@ void solve() {
   for (int i = 1; i <= n; i++) {
     cin >> v[i];
   }
-  cout << minCost(1, k, n, v) << nl;
+  dp[n] = 0;
+  for(int i = n-1; i>=1; i--) {
+    int mn = INT_MAX;
+    for (int j = i + 1; j<=min(i+k,n); j++) {
+      mn = min(mn, abs(v[i] - v[j]) + dp[j]);
+    }
+    dp[i] = mn;
+  }
+  cout << dp[1] << nl;
+  // cout << minCost(1, k, n, v) << nl;
 }
 
 int32_t main() {
