@@ -92,15 +92,15 @@ int my_rand(int l, int r) {
 
 vector<int> dp(100005,-1);
 
-int minCost(int i, int n, vector<int> &v)  {
-  if(i>=n)
-    return 0;
-  if(i==n-1)
-    return abs(v[i] - v[i + 1]) + minCost(i + 1, n, v);
-  if(dp[i]!=-1)
-    return dp[i];
-  return dp[i] = min(abs(v[i] - v[i + 1]) + minCost(i + 1, n, v), abs(v[i] - v[i + 2]) + minCost(i + 2, n, v));
-}
+// int minCost(int i, int n, vector<int> &v)  {
+//   if(i>=n)
+//     return 0;
+//   if(i==n-1)
+//     return abs(v[i] - v[i + 1]) + minCost(i + 1, n, v);
+//   if(dp[i]!=-1)
+//     return dp[i];
+//   return dp[i] = min(abs(v[i] - v[i + 1]) + minCost(i + 1, n, v), abs(v[i] - v[i + 2]) + minCost(i + 2, n, v));
+// }
 
 void solve() {
   int n;
@@ -108,7 +108,15 @@ void solve() {
   vi v(n + 1);
   for (int i = 1; i <= n; i++)
     cin >> v[i];
-  cout << minCost(1, n, v) << nl;
+  dp[1] = 0;
+  dp[2] = abs(v[2]-v[1]);
+  for (int i = 3; i<=n; i++) {
+    int cost1 = dp[i - 1] + abs(v[i - 1] - v[i]);
+    int cost2 = dp[i - 2] + abs(v[i - 2] - v[i]);
+    dp[i] = min(cost1, cost2);
+  }
+  cout << dp[n] << nl;
+  // cout << minCost(1, n, v) << nl;
 }
 
 int32_t main() {
