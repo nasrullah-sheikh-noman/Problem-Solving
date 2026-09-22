@@ -90,27 +90,25 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
+vector<int> dp(100005,-1);
+
+int minCost(int i, int n, vector<int> &v)  {
+  if(i>=n)
+    return 0;
+  if(i==n-1)
+    return abs(v[i] - v[i + 1]) + minCost(i + 1, n, v);
+  if(dp[i]!=-1)
+    return dp[i];
+  return dp[i] = min(abs(v[i] - v[i + 1]) + minCost(i + 1, n, v), abs(v[i] - v[i + 2]) + minCost(i + 2, n, v));
+}
+
 void solve() {
   int n;
   cin >> n;
-  vl v(n);
-  set<ll> st;
-  for (int i = 1; i <= n; i++) {
-    cin >> v[i - 1];
-    st.insert(v[i - 1] - i);
-  }
-  
-  int ans = 1;
-  for(auto x: st) {
-    if(!st.count(x-1)) {
-      int len = 1;
-      while(st.count(x+len)) {
-        len++;
-      }
-      ans = max(ans, len);
-    }
-  }
-  cout << ans << nl;
+  vi v(n + 1);
+  for (int i = 1; i <= n; i++)
+    cin >> v[i];
+  cout << minCost(1, n, v) << nl;
 }
 
 int32_t main() {
@@ -118,7 +116,7 @@ int32_t main() {
   cin.tie(nullptr);
 
   int t = 1;
-  cin >> t;
+  // cin >> t;
 
   while (t--) {
     solve();
