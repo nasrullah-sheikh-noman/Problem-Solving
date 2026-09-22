@@ -15,7 +15,7 @@ using ui8 = __uint128_t;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 
-template<typename T>
+template <typename T>
 using vc = vector<T>;
 
 using vi = vc<int>;
@@ -41,18 +41,27 @@ const ld PI = acosl(-1.0L);
 #define rvs(v) reverse(all(v))
 #define sz(x) (int)((x).size())
 #define nl '\n'
-#define cinv(v) for(auto &x : (v)) cin >> x
-#define coutv(v) for(auto &x : (v)) cout << x << ' '; cout << nl
-#define coutvl(v) for(auto &x : (v)) cout << x << nl
+#define cinv(v)       \
+  for (auto &x : (v)) \
+  cin >> x
+#define coutv(v)      \
+  for (auto &x : (v)) \
+    cout << x << ' '; \
+  cout << nl
+#define coutvl(v)     \
+  for (auto &x : (v)) \
+  cout << x << nl
 #define Yes cout << "YES" << nl
 #define No cout << "NO" << nl
 #define yes cout << "Yes" << nl
 #define no cout << "No" << nl
 
 //==================== FUNCTIONS ====================//
-template<typename T>
-T gcd(T a, T b) {
-  while (b) {
+template <typename T>
+T gcd(T a, T b)
+{
+  while (b)
+  {
     T t = a % b;
     a = b;
     b = t;
@@ -60,23 +69,28 @@ T gcd(T a, T b) {
   return a;
 }
 
-template<typename T>
-T lcm(T a, T b) {
+template <typename T>
+T lcm(T a, T b)
+{
   return a / gcd(a, b) * b;
 }
 
-template<typename T>
-bool ckmin(T &a, T b) {
-  if (b < a) {
+template <typename T>
+bool ckmin(T &a, T b)
+{
+  if (b < a)
+  {
     a = b;
     return true;
   }
   return false;
 }
 
-template<typename T>
-bool ckmax(T &a, T b) {
-  if (b > a) {
+template <typename T>
+bool ckmax(T &a, T b)
+{
+  if (b > a)
+  {
     a = b;
     return true;
   }
@@ -86,11 +100,12 @@ bool ckmax(T &a, T b) {
 //==================== RANDOM ====================//
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
-int my_rand(int l, int r) {
+int my_rand(int l, int r)
+{
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-vector<int> dp(100004, INT_MAX);
+vector<int> dp(100004, -1);
 
 // int minCost(int i, int k, int n, vector<int> &v) {
 //   if(i>=n)
@@ -106,33 +121,40 @@ vector<int> dp(100004, INT_MAX);
 //   return dp[i] = mn;
 // }
 
-void solve() {
+void solve()
+{
   int n, k;
   cin >> n >> k;
   vi v(n + 1);
-  for (int i = 1; i <= n; i++) {
+  for (int i = 1; i <= n; i++)
+  {
     cin >> v[i];
   }
-  dp[n] = 0;
-  for(int i = n-1; i>=1; i--) {
+  dp[1] = 0;
+  dp[2] = abs(v[2] - v[1]);
+  for (int i = 3; i <= n; i++)
+  {
     int mn = INT_MAX;
-    for (int j = i + 1; j<=min(i+k,n); j++) {
+    for (int j = i - 1; j >= max(i - k, 1); j--)
+    {
       mn = min(mn, abs(v[i] - v[j]) + dp[j]);
     }
     dp[i] = mn;
   }
-  cout << dp[1] << nl;
+  cout << dp[n] << nl;
   // cout << minCost(1, k, n, v) << nl;
 }
 
-int32_t main() {
+int32_t main()
+{
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
   int t = 1;
   // cin >> t;
 
-  while (t--) {
+  while (t--)
+  {
     solve();
   }
 
