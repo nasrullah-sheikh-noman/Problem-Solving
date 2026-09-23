@@ -90,28 +90,8 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-map<int, int> str, vis;
-int rec(int box, int limit) {
-  if(box<=limit)
-  return 1;
-  if(vis[box]) return str[box];
-  int ans = 0;
-  int left = box / 2;
-  int right = box - left;
-  ans += rec(left, limit);
-  ans += rec(right, limit);
-  vis[box] = 1;
-  str[box] = ans;
-  return ans;
-}
-
 void solve() {
-  int box, limit;
-  while(cin >> box >> limit) {
-    str.clear();
-    vis.clear();
-    cout << rec(box, limit) << nl;
-  }
+  
 }
 
 int32_t main() {
