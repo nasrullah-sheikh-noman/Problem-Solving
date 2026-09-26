@@ -91,7 +91,23 @@ int my_rand(int l, int r) {
 }
 
 void solve() {
-  
+  int n;
+  cin >> n;
+  vi v(n);
+  cinv(v);
+  int q;
+  cin >> q;
+  int i, j, k, cnt = 0;
+  while(q--) {
+    cin >> i >> j >> k;
+    i--;
+    for (; i < min(j, n); i++) {
+      if(v[i]>k)
+        cnt++;
+    }
+    cout << cnt << nl;
+    cnt = 0;
+  }
 }
 
 int32_t main() {
