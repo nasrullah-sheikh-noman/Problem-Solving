@@ -36,14 +36,14 @@ const ld PI = acosl(-1.0L);
 #define S second
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
-#define srt(v) sort(all(v))
-#define rsrt(v) sort(rall(v))
-#define rvs(v) reverse(all(v))
+#define srt(arr) sort(all(arr))
+#define rsrt(arr) sort(rall(arr))
+#define rvs(arr) reverse(all(arr))
 #define sz(x) (int)((x).size())
 #define nl '\n'
-#define cinv(v) for(auto &x : (v)) cin >> x
-#define coutv(v) for(auto &x : (v)) cout << x << ' '; cout << nl
-#define coutvl(v) for(auto &x : (v)) cout << x << nl
+#define cinv(arr) for(auto &x : (arr)) cin >> x
+#define coutv(arr) for(auto &x : (arr)) cout << x << ' '; cout << nl
+#define coutvl(arr) for(auto &x : (arr)) cout << x << nl
 #define Yes cout << "YES" << nl
 #define No cout << "NO" << nl
 #define yes cout << "Yes" << nl
@@ -90,24 +90,89 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
+int n, q, arr[30005], ms[17][30005];
+
+void merge(int l, int mid, int r, int d) {
+  int i = l, j = mid + 1, k = l;
+  while(i<=mid && j <= r) {
+    if(ms[d+1][i]<=ms[d+1][j]) {
+      ms[d][k] = ms[d + 1][i];
+      k++;
+      i++;
+    } else {
+      ms[d][k] = ms[d + 1][j];
+      j++;
+      k++;
+    }
+  }
+  while(i<=mid) {
+    ms[d][k] = ms[d + 1][i];
+    i++;
+    k++;
+  }
+  while(j<=r) {
+    ms[d][k] = ms[d + 1][j];
+    j++;
+    k++;
+  }
+}
+
+void mergeSort(int l, int r, int d) {
+  if(l==r) {
+    ms[d][l] = arr[l];
+    return;
+  }
+  if(l<r) {
+    int mid = l + (r - l) / 2;
+    mergeSort(l, mid, d + 1);
+    mergeSort(mid + 1, r, d + 1);
+    merge(l, mid, r, d);
+  }
+}
+
+int query(int l, int r, int d, int i, int j, int k) {
+  if(r<i || j<l)
+    return 0;
+  if(i<=l && r<=j) {
+    int idx = upper_bound(ms[d] + l, ms[d] + r + 1, k) - (ms[d]+l);
+    return (r - l + 1) - idx;
+  }
+  int mid = l + (r - l) / 2;
+  return query(l, mid, d + 1, i, j, k) + query(mid + 1, r, d + 1, i, j, k);
+}
+
 void solve() {
   int n;
   cin >> n;
-  vi v(n);
-  cinv(v);
-  int q;
+  for (int i = 1; i <= n; i++)
+    cin >> arr[i];
+  mergeSort(1, n, 0);
   cin >> q;
-  int i, j, k, cnt = 0;
   while(q--) {
+    int i, j, k;
     cin >> i >> j >> k;
-    i--;
-    for (; i < min(j, n); i++) {
-      if(v[i]>k)
-        cnt++;
-    }
-    cout << cnt << nl;
-    cnt = 0;
+    cout << query(1, n, 0, i, j, k) << nl;
   }
+
+  // Brute Force Way
+
+  // int n;
+  // cin >> n;
+  // vi arr(n);
+  // cinv(arr);
+  // int q;
+  // cin >> q;
+  // int i, j, k, cnt = 0;
+  // while(q--) {
+  //   cin >> i >> j >> k;
+  //   i--;
+  //   for (; i < min(j, n); i++) {
+  //     if(arr[i]>k)
+  //       cnt++;
+  //   }
+  //   cout << cnt << nl;
+  //   cnt = 0;
+  // }
 }
 
 int32_t main() {
