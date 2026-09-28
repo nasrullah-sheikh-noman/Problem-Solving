@@ -90,40 +90,60 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-// #include<bits/stdc++.h>
+int n, m;
+int grid[101][101];
+bool vis[101][101];
+int level[101][101];
+vector<pair<int, int>> moves = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
-// using namespace std;
-// #define ll long long
-// int main() {
-//     int q;
-//     cin >> q;
-//     while (q--) {
-//         string s;
-//         cin >> s;
-//         int n = s.size(), i;
-//         s = '.' + s;
-//         vector < int > a(n + 1);
-//         for (i = 1; i <= n; i++) {
-//             a[i] = s[i] - '0';
-//         }
-//         for (i = 1; i <= n; i++) {
-//             a[i] += a[i - 1];
-//         }
-//         int ans = 1000;
-//         for (i = 0; i < n; i++) {
-//             ans = min({
-//                 ans,
-//                 i + a[n] - 2 * a[i],
-//                 n - i - a[n] + a[i] * 2
-//             });
-//         }
-//         cout << ans << '\n';
-//     }
+bool valid(int ci, int cj) {
+  return ci >= 0 && ci < n && cj >= 0 && cj < m;
+}
 
-// }
+void bfs() {
+  queue<pair<int, int>> q;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if(grid[i][j]==0) {
+        q.push({i, j});
+        vis[i][j] = true;
+        level[i][j] = 0;
+      } 
+    }
+  }
+  while(!q.empty()) {
+    auto par = q.front();
+    q.pop();
+    int pi = par.first;
+    int pj = par.second;
+    for (int i = 0; i < 4; i++) {
+      int ci = pi + moves[i].first;
+      int cj = pj + moves[i].second;
+      if(valid(ci,cj) && !vis[ci][cj] ) {
+        q.push({ci, cj});
+        vis[ci][cj] = true;
+        level[ci][cj] = level[pi][pj] + 1;
+      }
+    }
+  }
+}
 
 void solve() {
-  
+  cin >> n >> m;
+  for(int i = 0; i < n; i++) {
+    for (int j = 0;j < m; j++) {
+      cin >> grid[i][j];
+    }
+  }
+  memset(vis, false, sizeof(vis));
+  memset(level, -1, sizeof(level));
+  bfs();
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      cout << level[i][j] << " ";
+    }
+    cout << nl;
+  }
 }
 
 int32_t main() {
