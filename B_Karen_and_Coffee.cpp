@@ -90,38 +90,32 @@ int my_rand(int l, int r) {
   return uniform_int_distribution<int>(l, r)(rng);
 }
 
-// #include<bits/stdc++.h>
-
-// using namespace std;
-// #define ll long long
-// int cnt[200005];
-// int main() {
-//     int n, k, q, l, r;
-//     cin >> n >> k >> q;
-//     while (n--) {
-//         cin >> l >> r;
-//         cnt[l]++;
-//         cnt[r + 1]--;
-//     }
-//     int i;
-//     for (i = 1; i < 200005; i++) {
-//         cnt[i] += cnt[i - 1];
-//     }
-//     for (i = 1; i < 200005; i++) {
-//         if (cnt[i] >= k) cnt[i] = 1;
-//         else cnt[i] = 0;
-//     }
-//     for (i = 1; i < 200005; i++) {
-//         cnt[i] += cnt[i - 1];
-//     }
-//     while (q--) {
-//         cin >> l >> r;
-//         cout << cnt[r] - cnt[l - 1] << '\n';
-//     }
-// }
-
 void solve() {
-  
+  int a, b, n, k, q;
+  cin >> n >> k >> q;
+  ll pre[200005] = {};
+  while(n--) {
+    cin >> a >> b;
+    pre[a]++;
+    pre[b+1]--;
+  }
+  int i;
+  for (i = 1; i < 200005; i++) {
+    pre[i] += pre[i - 1];
+  }
+  for (i = 1; i < 200005; i++) {
+    if(pre[i]>=k)
+      pre[i] = 1;
+    else
+      pre[i] = 0;
+  }
+  for (i = 1; i < 200005; i++) {
+    pre[i] += pre[i - 1];
+  }
+  while(q--) {
+    cin >> a >> b;
+    cout << pre[b] - pre[a - 1] << nl;
+  }
 }
 
 int32_t main() {
