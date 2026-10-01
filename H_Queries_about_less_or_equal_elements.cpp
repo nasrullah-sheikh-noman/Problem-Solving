@@ -51,25 +51,15 @@ const ld PI = acosl(-1.0L);
 
 void solve() {
   int n, i, j, k, x, p, q, m, l, r;
-  cin >> n >> k;
+  cin >> n >> m;
   vi v(n);
   cinv(v);
   srt(v);
-  ll low = v[n/2]+1, high = v[n/2]+k, ans = v[n/2];
-  while(low<=high) {
-    ll mid =  low + (high-low) / 2;
-    ll cnt = 0;
-    for (i = n/2; i < n; i++) {
-      cnt += mid - min((ll)v[i], mid);
-    }
-    if(cnt<=k) {
-      ans = max(ans, mid);
-      low = mid + 1;
-    } else {
-      high = mid - 1;
-    }
+  while(m--) {
+    cin >> x;
+    cout << upper_bound(v.begin(), v.end(), x) - v.begin() << " ";
   }
-  cout << ans << nl;
+  cout << nl;
 }
 
 int32_t main() {
