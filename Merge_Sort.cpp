@@ -133,6 +133,7 @@ void solve() {
   int n;
   cin >> n;
   vi v(n);
+  int v[n];
   cinv(v);
   divide(0, n - 1, v);
   for (int i = 0; i < n-1; i++)
